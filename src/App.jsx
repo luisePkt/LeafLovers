@@ -1,10 +1,10 @@
 import "./App.css";
-import Fetching from "../utils/Fetching";
+import FetchPerenual from "../utils/FetchPerenual";
 
 function App() {
   return (
     <>
-      <Fetching />
+      <FetchPerenual />
     </>
   );
 }
