@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import HomePage from "../../pages/HomePage";
 import MatchingPage from "../../pages/MatchingPage";
 import ResultPage from "../../pages/ResultPage";
 import SwapPage from "../../pages/SwapPage";
 import { NavLink } from "react-router-dom";
 import style from "../../styles/navigation.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = () => {
+  // show and hide navBar:
+  const [showBars, setShowBars] = useState(false);
+
   const routes = [
     { id: 0, name: "home", to: "/", element: <HomePage /> },
     {
@@ -19,24 +24,41 @@ const Navigation = () => {
     { id: 3, name: "swap", to: "/swap", element: <SwapPage /> },
   ];
 
+  // show and hide navBar:
+  const handleShowBars = () => {
+    setShowBars(!showBars);
+  };
+
   return (
     <nav>
-                                
-      <ul>
-        {routes.map((route) => (
-          <li key={route.id}>
-            <NavLink
-              to={route.to}
-              style={({ isActive }) => {
-                return isActive ? { textDecoration: "underline" } : undefined;
-              }}
-              className={style.navLink}
-            >
-              {route.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      {/* logo */}
+      <div className={style.logo}>
+        <p>FL</p>
+      </div>
+
+      {/* bars */}
+      <div className={style.menuIcon}>
+        <FontAwesomeIcon icon={faBars} onClick={handleShowBars} />
+      </div>
+
+      {/* nav */}
+      <div className={`${style.navElements} ${showBars && style.active}`}>
+        <ul>
+          {routes.map((route) => (
+            <li key={route.id}>
+              <NavLink
+                to={route.to}
+                style={({ isActive }) => {
+                  return isActive ? { textDecoration: "underline" } : undefined;
+                }}
+                className={style.navLink}
+              >
+                {route.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
