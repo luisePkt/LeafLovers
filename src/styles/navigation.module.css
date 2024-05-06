@@ -1,9 +1,14 @@
-.activeNavLink {
-  background-color: antiquewhite;
+nav {
+  background-color: var(--bgSecondary);
+  padding: 10px 20px;
 }
 
 ul {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+}
+
+.navLink {
+  color: black;
+  text-decoration: none;
 }
