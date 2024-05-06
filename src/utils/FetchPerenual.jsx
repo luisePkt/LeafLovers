@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import locations from "../utils/locations";
+import locations from "./locations";
 import { fakePlants } from "./FakeData";
 
 const FetchPerenual = () => {
