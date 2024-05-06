@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 3em); /* noch anpassen je nach Höhe des Headers */
+}
+
+h1 {
+  font-size: clamp(40px, 10vw, 120px);
+  font-family: "Bubblegum Sans";
+  color: var(--bgSecondary);
+}
+
+button {
+  background-color: var(--boxSecondary);
+  border-radius: 5px;
+  border: none;
+  padding: 1em;
+  margin: 1em;
+  cursor: pointer;
+  width: clamp(300px, 50%, 700px);
+}
+
+button:hover {
+  background-color: var(--buttonHover);
+  color: white;
+}
+
+span {
+  font-weight: bold;
+}

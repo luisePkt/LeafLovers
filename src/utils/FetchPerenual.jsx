@@ -41,10 +41,9 @@ const FetchPerenual = () => {
 
   return (
     <div>
-      <h1>Zimmerpflanzen</h1>
       {plants.length !== 0 && (
         <ul>
-          {plants.map((plant) => (
+          {plants.slice(0, 3).map((plant) => (
             <li key={plant.id}>
               <h2>{plant.common_name}</h2>
               {plant.default_image && (
