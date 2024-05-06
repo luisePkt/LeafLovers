@@ -4,7 +4,8 @@ import { fakePlants } from "./FakeData";
 
 const FetchPerenual = () => {
   const url =
-    "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor=1&cycle=perennial";
+    "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor=1&edible=1";
+  // "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor=1&cycle=perennial"; // with filters for indoor and perennial
 
   const [plants, setPlants] = useState([]);
 
