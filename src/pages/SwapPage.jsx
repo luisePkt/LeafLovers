@@ -1,10 +1,9 @@
-import React from "react";
 import FetchPerenual from "../utils/FetchPerenual";
 
 const SwapPage = () => {
   return (
     <div>
-      SwapPage
+      Swap Meet
       <FetchPerenual />
     </div>
   );
