@@ -9,32 +9,32 @@ const FetchPerenual = () => {
   const [plants, setPlants] = useState([]);
 
   // das hier auskommentieren um zu fetchen statt zu faken:
-  // useEffect(() => {
-  //   const fakeDataWithLocation = fakePlants.map((plant) => ({
-  //     ...plant,
-  //     location: locations[Math.floor(Math.random() * locations.length)],
-  //   }));
-  //   setPlants(fakeDataWithLocation);
-  // }, []);
+  useEffect(() => {
+    const fakeDataWithLocation = fakePlants.map((plant) => ({
+      ...plant,
+      location: locations[Math.floor(Math.random() * locations.length)],
+    }));
+    setPlants(fakeDataWithLocation);
+  }, []);
 
   //das hier einkommentieren um zu fetchen statt zu faken:
-  useEffect(() => {
-    const fetchPlants = async () => {
-      try {
-        const res = await fetch(url);
-        const resJson = await res.json();
-        const dataWithLocation = resJson.data.map((plant) => ({
-          ...plant,
-          location: locations[Math.floor(Math.random() * locations.length)],
-        }));
-        setPlants(dataWithLocation);
-        return dataWithLocation;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // fetchPlants();
-  }, []);
+  // useEffect(() => {
+  //   const fetchPlants = async () => {
+  //     try {
+  //       const res = await fetch(url);
+  //       const resJson = await res.json();
+  //       const dataWithLocation = resJson.data.map((plant) => ({
+  //         ...plant,
+  //         location: locations[Math.floor(Math.random() * locations.length)],
+  //       }));
+  //       setPlants(dataWithLocation);
+  //       return dataWithLocation;
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   // fetchPlants();
+  // }, []);
 
   console.log(plants);
 
