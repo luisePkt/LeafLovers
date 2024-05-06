@@ -1,19 +1,39 @@
 /* font import */
 @import url("https://fonts.bunny.net/css?family=akronim:400|bubblegum-sans:400|noto-sans-display:400,400i,700");
 
-.bubble {
-  font-family: "Bubblegum Sans", display;
-  font-size: 40px;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.akronim {
-  font-family: "Akronim", display;
-  font-size: 50px;
-}
+:root {
+  /* colors */
+  --bgPrimary: #eee7d0;
+  --bgSecondary: #9dbb87;
+  --boxPrimary: #f5c6e1;
+  --boxSecondary: #e8c08a;
+  --buttonHover: #957d60;
+  --buttonNavHover: #d9c996;
 
-.text {
+  background-color: var(--bgPrimary);
   font-family: "Noto Sans Display", sans-serif;
   font-size: 20px;
 }
 
+/* .bubble {
+  font-family: "Bubblegum Sans", display;
+  font-size: 40px;
+}
 
+
+.text {
+  font-family: "Noto Sans Display", sans-serif;
+  font-size: 20px;
+} */
+
+/* fällt raus */
+/* .akronim {
+  font-family: "Akronim", display;
+  font-size: 50px;
+} */

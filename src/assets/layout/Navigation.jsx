@@ -18,16 +18,19 @@ const Navigation = () => {
     { id: 2, name: "result", to: "/result", element: <ResultPage /> },
     { id: 3, name: "swap", to: "/swap", element: <SwapPage /> },
   ];
+
   return (
     <nav>
-      <ul >
+                                
+      <ul>
         {routes.map((route) => (
           <li key={route.id}>
             <NavLink
               to={route.to}
-              className={({ isActive }) => {
-                return isActive ? style.activeNavLink : undefined;
+              style={({ isActive }) => {
+                return isActive ? { textDecoration: "underline" } : undefined;
               }}
+              className={style.navLink}
             >
               {route.name}
             </NavLink>
