@@ -45,17 +45,21 @@ const Navigation = () => {
       <div className={`${style.navElements} ${showBars && style.active}`}>
         <ul>
           {routes.map((route) => (
-            <li key={route.id}>
-              <NavLink
-                to={route.to}
-                style={({ isActive }) => {
-                  return isActive ? { textDecoration: "underline" } : undefined;
-                }}
-                className={style.navLink}
-              >
-                {route.name}
-              </NavLink>
-            </li>
+            <div className={style.linkContainer}>
+              <li key={route.id}>
+                <NavLink
+                  to={route.to}
+                  style={({ isActive }) => {
+                    return isActive
+                      ? { textDecoration: "underline" }
+                      : undefined;
+                  }}
+                  className={style.navLink}
+                >
+                  {route.name}
+                </NavLink>
+              </li>
+            </div>
           ))}
         </ul>
       </div>

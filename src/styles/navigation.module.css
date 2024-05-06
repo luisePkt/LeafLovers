@@ -14,29 +14,32 @@ nav {
   color: antiquewhite;
 }
 
-ul {
+.navElements {
+  width: 75%;
+}
+
+.navElements ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 75%;
+}
+.linkContainer {
+  width: 100px;
+  text-align: center;
 }
 
 .navLink {
   color: black;
   text-decoration: none;
+  color: var(--bgPrimary);
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-/* .navElements {
-  position: absolute;
-  right: 0;
-  top: 60px;
-  background-color: #fef7e5;
-  width: 0;
-  height: calc(100vh - 60px);
-  transition: all 0.3s ease-in;
-  overflow: hidden;
-  
-} */
+.navLink:hover {
+  font-weight: 700;
+  font-style: italic;
+}
 
 .menuIcon {
   display: none;
@@ -46,16 +49,23 @@ ul {
   .menuIcon {
     display: block;
     cursor: pointer;
+    color: var(--bgPrimary);
   }
+
+  .menuIcon:hover {
+    color: var(--boxPrimary);
+  }
+
   .navElements {
     position: absolute;
     right: 0;
-    top: 60px;
-    background-color: #fef7e5;
+    top: 65px;
+    background-color: var(--bgSecondary);
     width: 0;
-    height: calc(100vh - 60px);
     transition: all 0.3s ease-in;
     overflow: hidden;
+    padding-bottom: 20px;
+  
   }
 
   .navElements.active {
@@ -65,6 +75,7 @@ ul {
   .navElements ul {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .navElements ul li {
