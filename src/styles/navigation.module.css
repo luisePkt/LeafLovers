@@ -1,0 +1,9 @@
+.activeNavLink {
+  background-color: antiquewhite;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,5 +1,5 @@
 import "./App.css";
-import FetchPerenual from "../utils/FetchPerenual";
+import FetchPerenual from "./utils/FetchPerenual";
 
 function App() {
   return (
