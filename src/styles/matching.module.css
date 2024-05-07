@@ -1,10 +1,18 @@
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: var(--boxPrimary);
   width: clamp(300px, 50%, 700px);
   min-height: 300px;
   padding: 1em;
   margin: 1em;
+  border-radius: 20px;
+}
+
+.startBtn {
+  width: 150px;
+  margin-top: 30px;
 }
