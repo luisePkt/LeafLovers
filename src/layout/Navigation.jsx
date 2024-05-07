@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import HomePage from "../../pages/HomePage";
-import MatchingPage from "../../pages/MatchingPage";
-import ResultPage from "../../pages/ResultPage";
-import SwapPage from "../../pages/SwapPage";
+import { useState } from "react";
+import HomePage from "../pages/HomePage";
+import MatchingPage from "../pages/MatchingPage";
+import ResultPage from "../pages/ResultPage";
+import SwapPage from "../pages/SwapPage";
 import { NavLink } from "react-router-dom";
-import style from "../../styles/navigation.module.css";
+import style from "../styles/navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -45,8 +45,8 @@ const Navigation = () => {
       <div className={`${style.navElements} ${showBars && style.active}`}>
         <ul>
           {routes.map((route) => (
-            <div className={style.linkContainer}>
-              <li key={route.id}>
+            <div key={route.id} className={style.linkContainer}>
+              <li>
                 <NavLink
                   to={route.to}
                   style={({ isActive }) => {

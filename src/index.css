@@ -18,6 +18,35 @@
 
   background-color: var(--bgPrimary);
   font-family: "Noto Sans Display", sans-serif;
+
+}
+
+h1 {
+  font-size: clamp(40px, 10vw, 120px);
+  font-family: "Bubblegum Sans";
+  color: var(--bgSecondary);
+}
+
+h2 {
+  margin: 1em;
+}
+
+button {
+  background-color: var(--boxSecondary);
+  border-radius: 5px;
+  border: none;
+  padding: 1em;
+  margin: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--buttonHover);
+  color: white;
+}
+
+span {
+  font-weight: bold;
 }
 
 /* .bubble {
