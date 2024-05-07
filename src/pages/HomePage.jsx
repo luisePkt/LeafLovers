@@ -6,7 +6,7 @@ const HomePage = () => {
     <div className={style.main}>
       <h1>Welcome</h1>
       <QuizStart />
-      <button>
+      <button className={style.homeBtn}>
         ...or meet other plants on our <span>Swap Meet</span>
       </button>
     </div>
