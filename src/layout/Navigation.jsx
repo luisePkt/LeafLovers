@@ -45,8 +45,8 @@ const Navigation = () => {
       <div className={`${style.navElements} ${showBars && style.active}`}>
         <ul>
           {routes.map((route) => (
-            <div className={style.linkContainer}>
-              <li key={route.id}>
+            <div key={route.id} className={style.linkContainer}>
+              <li>
                 <NavLink
                   to={route.to}
                   style={({ isActive }) => {
