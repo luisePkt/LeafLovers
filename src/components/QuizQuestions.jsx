@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePlantsContext } from "../utils/PlantsProvider";
 
 const QuizQuestions = () => {
+  // connection provider to save answer criteria:
+  const { resultMatching, setResultMatching} = usePlantsContext();
+ 
+  
   // show current question:
   const [currQuestion, setCurrQuestion] = useState(0);
   // show result:
   const [showResult, setShowResult] = useState(false);
   // save answer criteria:
-  const [answerCriteria, setAnswerCriteria] = useState([]);
+  // const [answerCriteria, setAnswerCriteria] = useState([]);
   // redirect to results page:
   const navigate = useNavigate();
 
@@ -115,7 +120,7 @@ const QuizQuestions = () => {
     if (nextQuestion < quizQuestions.length) {
       // setzt eröht value als neuen index
       setCurrQuestion(nextQuestion);
-      setAnswerCriteria((prevCriteria) => [
+      setResultMatching((prevCriteria) => [
         ...prevCriteria,
         quizQuestions[currQuestion].answerChoices[answerIndex].criteria,
         // gibt konkretes criteria aus:
@@ -136,7 +141,9 @@ const QuizQuestions = () => {
   // redirect to results page automatically:
   useEffect(() => {
     if (showResult) {
-      navigate("/result", { answerCriteria: "answerCriteria" });
+      navigate("/result", {
+        resultMatching: "resultMatching",
+      });
     }
   }, [showResult, navigate]);
   // [showResult, navigate] => navigate hier wichtig, damit immer aktuellste Version von navigate-function verwendet wird
@@ -159,6 +166,7 @@ const QuizQuestions = () => {
         <div>
           <ul>
             {answerCriteria.map((criteria, index) => (
+              // NOTICE: besster abfrage nach art der daten und dann, wenn boolen toString()?
               <li key={index}>{criteria.toString()}</li>
             ))}
           </ul>

@@ -20,7 +20,8 @@ const Navigation = () => {
       to: "/matching",
       element: <MatchingPage />,
     },
-    { id: 2, name: "result", to: "/result", element: <ResultPage /> },
+    // { id: 2, name: "result", to: "/result", element: <ResultPage /> },
+    //  NOTICE:id anpassen
     { id: 3, name: "swap", to: "/swap", element: <SwapPage /> },
   ];
 
