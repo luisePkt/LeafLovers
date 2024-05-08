@@ -1,6 +1,7 @@
 import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/swap.module.css";
-import SwapSinglePlant from "./SinglePlant";
+import SinglePlant from "./SinglePlant";
+import { useEffect } from "react";
 
 const SwapGallery = () => {
   const { plants, count, dispatch } = usePlantsContext();
@@ -10,7 +11,10 @@ const SwapGallery = () => {
       dispatch({ type: "set", value: 10 });
     }
   };
-  initializeCount();
+
+  useEffect(() => {
+    initializeCount();
+  }, []);
 
   return (
     <div className={style.container}>
@@ -30,14 +34,7 @@ const SwapGallery = () => {
       {plants.length > 0 && (
         <ul className={style.cardsContainer}>
           {plants.slice(0, count).map((plant) => (
-            <SwapSinglePlant
-              key={plant.id}
-              id={plant.id}
-              firstName={plant.firstName}
-              locations={plant.locations}
-              common_name={plant.common_name}
-              src={plant.default_image}
-            />
+            <SinglePlant key={plant.id} plant={plant} />
           ))}
         </ul>
       )}{" "}
