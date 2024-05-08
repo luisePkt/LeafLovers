@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -8,60 +14,38 @@
 
 .container {
   width: clamp(300px, 80%, 1200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.cardsContainer {
+.middleSec {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
-}
-
-li.cardsLi {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: clamp(300px, 30%, 400px);
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 1em;
+  padding: 1em clamp(2em, 5%, 4em);
   margin: clamp(1vw, 1%, 2vw);
   border-radius: 5%;
   background-color: var(--boxPrimary);
-  width: clamp(300px, 30%, 400px);
-  height: 400px;
+  width: clamp(300px, 90%, 500px);
+  min-height: 40vh;
   text-decoration: none;
   color: black;
 }
 
-.card:hover {
-  transform: scale(1.04);
-  cursor: pointer;
-}
-
-.card * {
-  margin: 0.5em;
-}
-
-.location {
-  color: rgb(71, 71, 71);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .img,
 .imgReplacement {
-  width: 200px;
-  height: 200px;
+  width: clamp(300px, 90%, 500px);
+  height: clamp(300px, 30vh, 500px);
   object-fit: cover;
   border-radius: 5%;
   background-color: var(--bgSecondary);
@@ -69,4 +53,23 @@ li.cardsLi {
   justify-content: center;
   align-items: center;
   font-style: italic;
+}
+
+.location {
+  color: rgb(71, 71, 71);
+}
+
+.infos {
+  margin: 1.5em 0;
+}
+
+.switch {
+  font-size: 36px;
+  cursor: pointer;
+  color: var(--bgSecondary);
+}
+
+.switchDisabled {
+  font-size: 36px;
+  color: lightgray;
 }

@@ -3,28 +3,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const SwapSinglePlant = ({ id, firstName, locations, common_name, src }) => {
+const SinglePlant = ({ plant }) => {
   return (
     <li className={style.cardsLi}>
       {" "}
-      <Link to={`/plant/${id}`} className={style.card}>
+      <Link to={`/plant/${plant.id}`} className={style.card}>
         <p className={style.location}>
           <FontAwesomeIcon icon={faLocationDot} />
-          {locations[0]}
-          {locations.length > 1 &&
-            ` and ${locations.length - 1} other location`}
-          {+locations.length > 2 ? "s" : ""}
+          {plant.locations[0]}
+          {plant.locations.length > 1 &&
+            ` and ${plant.locations.length - 1} other location`}
+          {+plant.locations.length > 2 ? "s" : ""}
         </p>
-        {src ? (
-          <img src={src.original_url} alt={common_name} />
+        {plant.default_image && plant.default_image.thumbnail ? (
+          <img
+            className={style.img}
+            src={plant.default_image.thumbnail}
+            alt={plant.common_name}
+          />
         ) : (
           <div className={style.imgReplacement}>No image available</div>
         )}
-        <h4>{firstName}</h4>
-        <p>{common_name}</p>
+        <h4>{plant.firstName}</h4>
+        <p>{plant.common_name}</p>
       </Link>
     </li>
   );
 };
 
-export default SwapSinglePlant;
+export default SinglePlant;
