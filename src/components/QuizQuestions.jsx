@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const QuizQuestions = () => {
   // show current question:
@@ -7,6 +8,8 @@ const QuizQuestions = () => {
   const [showResult, setShowResult] = useState(false);
   // save answer criteria:
   const [answerCriteria, setAnswerCriteria] = useState([]);
+  // redirect to results page:
+  const navigate = useNavigate();
 
   // source questions:
   const quizQuestions = [
@@ -125,7 +128,18 @@ const QuizQuestions = () => {
     // setCurrQuestion(nextQuestion);
   };
 
-  //   console.log(answerCriteria);
+  // redirect to results page with button:
+  // const handleRedirection = () => {
+  //   navigate("/result");
+  // };
+
+  // redirect to results page automatically:
+  useEffect(() => {
+    if (showResult) {
+      navigate("/result", { answerCriteria: "answerCriteria" });
+    }
+  }, [showResult, navigate]);
+  // [showResult, navigate] => navigate hier wichtig, damit immer aktuellste Version von navigate-function verwendet wird
 
   return (
     <div>
@@ -140,8 +154,8 @@ const QuizQuestions = () => {
         </button>
       ))}
 
-      {/* show result */}
-      {showResult && (
+      {/* show result on same page*/}
+      {/* {showResult && (
         <div>
           <ul>
             {answerCriteria.map((criteria, index) => (
@@ -149,7 +163,10 @@ const QuizQuestions = () => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
+
+      {/* Umleitung mit button */}
+      {/* {showResult && <button onClick={handleRedirection}>show result</button>} */}
     </div>
   );
 };
