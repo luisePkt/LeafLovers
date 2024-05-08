@@ -6,7 +6,7 @@ const SwapPage = () => {
   const { plants, count, dispatch } = usePlantsContext();
 
   const showMore = () => {
-    dispatch({ type: "increase", value: 50 });
+    dispatch({ type: "increase", value: 10 });
   };
   return (
     <div className={style.main}>

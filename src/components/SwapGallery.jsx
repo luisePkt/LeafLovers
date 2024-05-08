@@ -3,7 +3,14 @@ import style from "../styles/swap.module.css";
 import SwapSinglePlant from "./SinglePlant";
 
 const SwapGallery = () => {
-  const { plants, count } = usePlantsContext();
+  const { plants, count, dispatch } = usePlantsContext();
+
+  const initializeCount = () => {
+    if (count < 10) {
+      dispatch({ type: "set", value: 10 });
+    }
+  };
+  initializeCount();
 
   return (
     <div className={style.container}>
@@ -25,6 +32,7 @@ const SwapGallery = () => {
           {plants.slice(0, count).map((plant) => (
             <SwapSinglePlant
               key={plant.id}
+              id={plant.id}
               firstName={plant.firstName}
               locations={plant.locations}
               common_name={plant.common_name}

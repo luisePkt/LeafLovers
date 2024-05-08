@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Layout from "../layout/Layout"
+import Layout from "../layout/Layout";
 import HomePage from "../pages/HomePage";
 import ErrorPage from "../pages/ErrorPage";
 import MatchingPage from "../pages/MatchingPage";
 import ResultPage from "../pages/ResultPage";
 import SwapPage from "../pages/SwapPage";
 import PlantsProvider from "./PlantsProvider";
+import SinglePlantPage from "../pages/SinglePlantPage";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const Router = () => {
         {
           path: "/swap",
           element: <SwapPage />,
+        },
+        {
+          path: "/plant/:id",
+          element: <SinglePlantPage />,
         },
         {
           path: "*",

@@ -50,6 +50,10 @@ button:disabled {
   color: white;
 }
 
+li {
+  list-style-type: none;
+}
+
 span {
   font-weight: bold;
 }
