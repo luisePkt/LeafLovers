@@ -5,6 +5,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -18,7 +19,6 @@
 
   background-color: var(--bgPrimary);
   font-family: "Noto Sans Display", sans-serif;
-
 }
 
 h1 {
@@ -42,6 +42,11 @@ button {
 
 button:hover {
   background-color: var(--buttonHover);
+  color: white;
+}
+
+button:disabled {
+  background-color: lightgrey;
   color: white;
 }
 
