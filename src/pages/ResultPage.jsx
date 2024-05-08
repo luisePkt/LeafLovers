@@ -1,11 +1,16 @@
-const ResultPage = ({ answerCriteria }) => {
+import { usePlantsContext } from "../utils/PlantsProvider";
+
+const ResultPage = () => {
+  // connection provider:
+  const { resultMatching, setResultMatching } = usePlantsContext();
+
   return (
     <div>
       ResultPage
       {
         <div>
           <ul>
-            {answerCriteria.map((criteria, index) => (
+            {resultMatching.map((criteria, index) => (
               <li key={index}>{criteria.toString()}</li>
             ))}
           </ul>

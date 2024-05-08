@@ -29,6 +29,9 @@ const PlantsProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
   const [count, dispatch] = useReducer(reducer, initialState);
 
+  // result matching:
+  const [resultMatching, setResultMatching] = useState([]);
+
   const url =
     "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor";
 
@@ -75,7 +78,9 @@ const PlantsProvider = ({ children }) => {
   // console.log(plants);
 
   return (
-    <PlantsContext.Provider value={{ plants, count, dispatch }}>
+    <PlantsContext.Provider
+      value={{ plants, count, dispatch, resultMatching, setResultMatching }}
+    >
       {children}
     </PlantsContext.Provider>
   );
