@@ -9,7 +9,7 @@ import { fakePlants } from "./FakeData";
 import locations from "./locations";
 import firstNames from "./firstNames";
 
-const initialState = 10;
+const initialState = 0;
 const reducer = (state, action) => {
   switch (action.type) {
     case "set":

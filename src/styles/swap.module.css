@@ -1,3 +1,7 @@
+* {
+  background-color: 1px solid red;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -19,16 +23,36 @@
   width: 100%;
 }
 
+li.cardsLi {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: clamp(300px, 30%, 400px);
+}
+
 .card {
+  width: clamp(300px, 30%, 400px);
+  height: 400px;
+}
+
+.singleCard {
+  width: clamp(300px, 80%, 700px);
+  height: 700px;
+}
+
+.card,
+.singleCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  list-style-type: none;
   padding: 1em;
   margin: clamp(1vw, 1%, 2vw);
-  width: clamp(300px, 30%, 400px);
+  text-decoration: none;
+  color: black;
   background-color: var(--boxPrimary);
+  border-radius: 5%;
 }
 
 .card:hover {
@@ -36,19 +60,20 @@
   cursor: pointer;
 }
 
-.card * {
+.card *,
+.singleCard * {
   margin: 0.5em;
 }
 
-.card .location {
+.location {
   color: rgb(71, 71, 71);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card img,
-.card .imgReplacement {
+img,
+.imgReplacement {
   width: 200px;
   height: 200px;
   object-fit: cover;
