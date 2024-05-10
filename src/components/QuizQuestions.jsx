@@ -4,9 +4,8 @@ import { usePlantsContext } from "../utils/PlantsProvider";
 
 const QuizQuestions = () => {
   // connection provider to save answer criteria:
-  const { resultMatching, setResultMatching} = usePlantsContext();
- 
-  
+  const { resultMatching, setResultMatching } = usePlantsContext([]);
+
   // show current question:
   const [currQuestion, setCurrQuestion] = useState(0);
   // show result:
@@ -21,6 +20,7 @@ const QuizQuestions = () => {
     {
       id: 0,
       questionText: "Which statement applies most to you?",
+      // criteriaName: "cycle",
       answerChoices: [
         {
           answerText:
@@ -47,6 +47,7 @@ const QuizQuestions = () => {
     {
       id: 1,
       questionText: "I would like to...",
+      // criteriaName: "watering",
       answerChoices: [
         {
           answerText: "...  take care of a plant often.",
@@ -69,6 +70,7 @@ const QuizQuestions = () => {
     {
       id: 2,
       questionText: "I have no problem with poisonous plants.",
+      // criteriaName: "poisonous",
       answerChoices: [
         { answerText: "I agree with that.", criteria: true },
         { answerText: "I do not agree with that", criteria: false },
@@ -77,28 +79,30 @@ const QuizQuestions = () => {
     {
       id: 3,
       questionText: "I would have room for one plant on a...",
+      // criteriaName: "sunlight",
       answerChoices: [
         {
           answerText: "... very shady place.",
-          criteria: "full_shade",
+          criteria: "full shade",
         },
         {
           answerText: "... semi-shady place.",
-          criteria: "part_shade",
+          criteria: "part shade",
         },
         {
           answerText: "... sunny place with partial shade.",
-          criteria: "sun-part_shade",
+          criteria: ["full sun", " part shade"],
         },
         {
           answerText: "... very sunny place.",
-          criteria: "full_sun",
+          criteria: "full sun",
         },
       ],
     },
     {
       id: 4,
       questionText: "I would like to eat parts of the plant or its fruit.",
+      // criteriaName: "edible",
       answerChoices: [
         {
           answerText: "Yes!",
@@ -116,17 +120,39 @@ const QuizQuestions = () => {
   const handleQuestion = (answerIndex) => {
     // eröht index um 1
     const nextQuestion = currQuestion + 1;
-
+    // console.log(
+    //   `Adding criterion: ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`
+    // );
     if (nextQuestion < quizQuestions.length) {
       // setzt eröht value als neuen index
       setCurrQuestion(nextQuestion);
       setResultMatching((prevCriteria) => [
         ...prevCriteria,
-        quizQuestions[currQuestion].answerChoices[answerIndex].criteria,
+        quizQuestions[currQuestion].answerChoices[
+          answerIndex
+        ].criteria.toString(),
+        // `${quizQuestions[currQuestion].criteriaName} : ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`,
+
         // gibt konkretes criteria aus:
         // quizQuestions[1].answerChoice[1].criteria,
       ]);
+      // } else {
+      // console.log(resultMatching);
+      // console.log(typeof resultMatching);
+      //   setShowResult(true);
+      // }
+      // } else if (nextQuestion === quizQuestions.length) {
     } else {
+      // fügt letzten Wert ins Array hinzu:
+      setResultMatching((prevCriteria) => [
+        ...prevCriteria,
+        quizQuestions[currQuestion].answerChoices[
+          answerIndex
+        ].criteria.toString(),
+        // `${quizQuestions[currQuestion].criteriaName} : ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`,
+      ]);
+      // console.log(`Array: ${resultMatching}`);
+      // console.log(resultMatching);
       setShowResult(true);
     }
 
@@ -141,9 +167,7 @@ const QuizQuestions = () => {
   // redirect to results page automatically:
   useEffect(() => {
     if (showResult) {
-      navigate("/result", {
-        resultMatching: "resultMatching",
-      });
+      navigate("/result");
     }
   }, [showResult, navigate]);
   // [showResult, navigate] => navigate hier wichtig, damit immer aktuellste Version von navigate-function verwendet wird

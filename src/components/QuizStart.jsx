@@ -1,12 +1,24 @@
 import { useState } from "react";
 import style from "../styles/matching.module.css";
 import QuizQuestions from "./QuizQuestions";
+import { usePlantsContext } from "../utils/PlantsProvider";
 
 const QuizStart = () => {
+  // connection provider to save answer criteria:
+  const { resultMatching, setResultMatching } = usePlantsContext();
+
   const [showQuiz, setShowQuiz] = useState(false);
+
+  // Zurücksetzten der Werte im resultMatching array:
+  // const resetArrayResult = () => {
+  //   setResultMatching([]);
+  // };
 
   const handleShowQuizz = () => {
     setShowQuiz((val) => !val);
+
+    // Zurücksetzten der Werte im resultMatching array:
+    setResultMatching([]);
   };
 
   return (
