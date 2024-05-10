@@ -44,7 +44,7 @@ const Router = () => {
 
   return (
     <PlantsProvider>
-      <RouterProvider router={router}>
+      <RouterProvider router={router} >
         <Layout />
       </RouterProvider>
     </PlantsProvider>

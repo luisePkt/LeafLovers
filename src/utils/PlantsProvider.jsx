@@ -9,11 +9,11 @@ import { fakePlants } from "./FakeData";
 import locations from "./locations";
 import firstNames from "./firstNames";
 
-const initialState = 0;
+const initialState = 10;
 const reducer = (state, action) => {
   switch (action.type) {
     case "set":
-      return action.value;
+      return Number(action.value);
     case "increase":
       return state + action.value;
     case "reset":
@@ -28,6 +28,11 @@ export const PlantsContext = createContext();
 const PlantsProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
   const [count, dispatch] = useReducer(reducer, initialState);
+  const [plantSelection, setPlantSelection] = useState();
+  const [searchInput, setSearchInput] = useState("");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [wateringFilter, setWateringFilter] = useState("all");
+  const [sunlightFilter, setSunlightFilter] = useState("all");
 
   // result matching:
   const [resultMatching, setResultMatching] = useState([]);
@@ -52,8 +57,13 @@ const PlantsProvider = ({ children }) => {
       ...plant,
       firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
       locations: getRandomLocations(),
+      common_name: plant.common_name
+        .split("-")
+        .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+        .join(" "),
     }));
     setPlants(fakeDataWithLocation);
+    setPlantSelection(fakeDataWithLocation);
   }, []);
 
   // Für echtes Fetching:
@@ -66,8 +76,13 @@ const PlantsProvider = ({ children }) => {
   //         ...plant,
   //          firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
   //         locations: [getRandomLocation(), getRandomLocation(), getRandomLocation(), getRandomLocation()],
+  //    common_name: plant.common_name
+  //    .split("-")
+  //    .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+  //    .join(" "),
   //       }));
   //       setPlants(dataWithLocation);
+  //      setPlantSelection(dataWithLocation)
   //       return dataWithLocation;
   //     } catch (error) {
   //       console.log(error);
@@ -79,7 +94,24 @@ const PlantsProvider = ({ children }) => {
 
   return (
     <PlantsContext.Provider
-      value={{ plants, count, dispatch, resultMatching, setResultMatching }}
+      value={{
+        plants,
+        setPlants,
+        count,
+        dispatch,
+        resultMatching,
+        setResultMatching,
+        plantSelection,
+        setPlantSelection,
+        searchInput,
+        setSearchInput,
+        locationFilter,
+        setLocationFilter,
+        wateringFilter,
+        setWateringFilter,
+        sunlightFilter,
+        setSunlightFilter,
+      }}
     >
       {children}
     </PlantsContext.Provider>

@@ -11,10 +11,18 @@ const SinglePlant = ({ plant }) => {
         <p className={style.location}>
           <FontAwesomeIcon icon={faLocationDot} />
           {plant.locations[0]}
-          {plant.locations.length > 1 &&
-            ` and ${plant.locations.length - 1} other location`}
-          {+plant.locations.length > 2 ? "s" : ""}
+          {plant.locations.length > 1 && " and"}
+          <span className={style.otherLocation}>
+            {plant.locations.length > 1 &&
+              `${plant.locations.length - 1} other location${
+                plant.locations.length > 2 ? "s" : ""
+              }`}
+          </span>
+          <span className={style.otherLocationDetail}>
+            {plant.locations.length > 1 && plant.locations.slice(1).join(", ")}
+          </span>
         </p>
+
         {plant.default_image && plant.default_image.thumbnail ? (
           <img
             className={style.img}

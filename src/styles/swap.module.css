@@ -6,6 +6,33 @@
   margin: 1em;
 }
 
+.filterContainer > * {
+  margin: 50px;
+  padding: 50px;
+}
+
+.searchInput {
+  border-radius: 5px;
+  background-image: url("../assets/magnifying-glass-solid.svg");
+  background-repeat: no-repeat;
+  background-position: 12px 12px;
+  background-size: 1.2rem;
+  padding: 1em 3em;
+  width: 50%;
+  background-color: white;
+  border: none;
+}
+
+.locationSelect,
+.wateringSelect,
+.sunlightSelect {
+  padding: 0.5em;
+  margin: 1em;
+  border: none;
+  border-radius: 5%;
+  background-color: var(--boxSecondary);
+}
+
 .container {
   width: clamp(300px, 80%, 1200px);
 }
@@ -53,9 +80,27 @@ li.cardsLi {
 
 .location {
   color: rgb(71, 71, 71);
+  font-size: 0.9rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.location .otherLocation {
+  text-decoration: underline;
+}
+
+.location .otherLocationDetail {
+  display: none;
+  text-align: center;
+}
+.location:hover .otherLocationDetail {
+  display: block;
+}
+.location:hover .otherLocation {
+  display: none;
 }
 
 .img,
@@ -69,4 +114,10 @@ li.cardsLi {
   justify-content: center;
   align-items: center;
   font-style: italic;
+}
+
+button.buttonToTop {
+  position: fixed;
+  right: 0;
+  bottom: 0;
 }
