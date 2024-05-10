@@ -6,7 +6,13 @@ import {
   faLocationDot,
   faCircleArrowRight,
   faCircleArrowLeft,
+  faDroplet,
+  faCloud,
+  faSun,
+  faCloudSun,
+  faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 
 const SinglePlantPage = () => {
@@ -58,6 +64,10 @@ const SinglePlantPage = () => {
                 />
                 <div className={style.card}>
                   <p className={style.location}>
+                    <FontAwesomeIcon
+                      icon={faRegularHeart}
+                      className={style.heart}
+                    />
                     <FontAwesomeIcon icon={faLocationDot} />
                     {" " + plant.locations.join(", ")}
                   </p>
@@ -73,8 +83,34 @@ const SinglePlantPage = () => {
                     </div>
                     <div className={style.infos}>
                       <h5>This plant needs:</h5>
-                      <p>Watering: {plant.watering} watering</p>
-                      <p>Sunlight: {plant.sunlight.join(" / ")}</p>
+                      <p>
+                        Watering: {plant.watering} watering{" "}
+                        <FontAwesomeIcon icon={faDroplet} />{" "}
+                        {plant.watering === "Average" && (
+                          <FontAwesomeIcon icon={faDroplet} />
+                        )}{" "}
+                        {plant.watering === "Frequent" && (
+                          <FontAwesomeIcon icon={faDroplet} />
+                        )}{" "}
+                        {plant.watering === "Frequent" && (
+                          <FontAwesomeIcon icon={faDroplet} />
+                        )}
+                      </p>
+                      <p>
+                        Sunlight: {plant.sunlight.join(", ")}{" "}
+                        {plant.sunlight.includes("full shade") && (
+                          <FontAwesomeIcon icon={faCloud} />
+                        )}{" "}
+                        {plant.sunlight.includes("deep shade") && (
+                          <FontAwesomeIcon icon={faCloud} />
+                        )}{" "}
+                        {plant.sunlight.includes("full sun") && (
+                          <FontAwesomeIcon icon={faSun} />
+                        )}{" "}
+                        {plant.sunlight.join("").includes("part") && (
+                          <FontAwesomeIcon icon={faCloudSun} />
+                        )}
+                      </p>
                     </div>
                   </div>
                   <button>Get in touch</button>

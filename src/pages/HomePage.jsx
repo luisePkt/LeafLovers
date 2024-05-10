@@ -9,7 +9,7 @@ const HomePage = () => {
       <h1>Welcome</h1>
       <QuizStart />
       <button className={style.homeBtn} onClick={() => navigate("/swap")}>
-        ...or meet other plants in our <span>Swap Exchange</span>
+        ...or meet other plants in our Swap Exchange
       </button>
     </div>
   );
