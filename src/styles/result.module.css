@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    margin: clamp(1vw, 1%, 2vw);
+    border-radius: 5%;
+    background-color: var(--boxPrimary);
+    width: clamp(300px, 30%, 400px);
+    height: 400px;
+    text-decoration: none;
+    color: black;
+  }
