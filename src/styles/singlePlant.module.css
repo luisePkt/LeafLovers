@@ -69,6 +69,10 @@
   cursor: pointer;
 }
 
+.plantDetails {
+  margin: 1em 0;
+}
+
 .infos {
   margin: 1.5em 0;
 }
@@ -82,4 +86,44 @@
 .switchDisabled {
   font-size: 36px;
   color: lightgray;
+}
+
+/* Contact form: */
+
+.contact {
+  background-color: var(--bgSecondary);
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.contact label {
+  display: block;
+  margin: 1em 0em;
+}
+
+.contact textarea,
+.contact input,
+.contact select {
+  display: block;
+  padding: 0.5em;
+}
+
+.contact select:focus {
+  outline: 3px solid var(--boxSecondary);
+  border: none;
+}
+
+.thankyouMessage {
+  background-color: var(--bgPrimary);
+  padding: 1em 0;
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+.thankyouMessage p {
+  padding: 0.5em;
+}
+
+.thankyouMessage .disclaimer {
+  font-size: 0.8em;
 }
