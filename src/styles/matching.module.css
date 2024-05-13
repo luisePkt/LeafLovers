@@ -4,9 +4,10 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 3em); /* noch anpassen je nach Höhe des Headers */
+  margin: 120px 1em 1em 1em;
 }
 
-.main {
+.section {
   display: flex;
   flex-direction: column;
   justify-content: center;

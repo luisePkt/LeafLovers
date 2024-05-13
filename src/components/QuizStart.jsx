@@ -22,7 +22,7 @@ const QuizStart = () => {
   };
 
   return (
-    <div className={style.main}>
+    <div className={style.section}>
       {!showQuiz && <p>Would you like to find out which plant suits you?</p>}
 
       {/* start button */}
