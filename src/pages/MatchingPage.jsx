@@ -4,7 +4,7 @@ import QuizStart from "../components/QuizStart";
 const MatchingPage = () => {
   return (
     <div className={style.container}>
-      <div className={style.main}>
+      <div className={style.section}>
         <QuizStart />
       </div>
     </div>

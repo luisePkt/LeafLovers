@@ -25,12 +25,10 @@ h1 {
   font-size: clamp(40px, 10vw, 120px);
   font-family: "Bubblegum Sans";
   color: var(--bgSecondary);
-  margin-top: 80px;
 }
 
 h2 {
   margin: 1em 0;
-  margin-top: 80px;
 }
 
 button {
