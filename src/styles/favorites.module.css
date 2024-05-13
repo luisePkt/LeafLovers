@@ -1,0 +1,28 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+}
+
+.main p {
+  font-size: 0.8rem;
+}
+
+.resultsNum {
+  font-weight: 700;
+}
+
+.container {
+  width: clamp(300px, 80%, 1200px);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

@@ -23,7 +23,7 @@ const Layout = () => {
     <div>
       {showScrollButton && (
         <a href="#">
-          <button style={{ position: "fixed", right: 0, bottom: 0 }}>
+          <button style={{ position: "fixed", right: 0, bottom: 0, zIndex: 5 }}>
             Back to top
           </button>
         </a>
