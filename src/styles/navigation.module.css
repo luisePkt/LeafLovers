@@ -1,5 +1,13 @@
 /* breakpoints: */
 
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 nav {
   background-color: var(--bgSecondary);
   padding: 10px 20px;

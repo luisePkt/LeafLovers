@@ -28,17 +28,20 @@ export const PlantsContext = createContext();
 const PlantsProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
   const [count, dispatch] = useReducer(reducer, initialState);
-  const [plantSelection, setPlantSelection] = useState();
+  const [plantSelection, setPlantSelection] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [locationFilter, setLocationFilter] = useState("all");
   const [wateringFilter, setWateringFilter] = useState("all");
   const [sunlightFilter, setSunlightFilter] = useState("all");
+  const [favorites, setFavorites] = useState([]);
+  const [currentPlant, setCurrentPlant] = useState();
+  const [currentIndex, setCurrentIndex] = useState();
 
   // result matching:
   const [resultMatching, setResultMatching] = useState([]);
 
-  const url =
-    "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor";
+  const baseUrl =
+    "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor=1";
 
   const getRandomLocations = () => {
     const list = [];
@@ -66,29 +69,64 @@ const PlantsProvider = ({ children }) => {
     setPlantSelection(fakeDataWithLocation);
   }, []);
 
-  // Für echtes Fetching:
+  // Für echtes Fetching (nur Seite 1):
   // useEffect(() => {
   //   const fetchPlants = async () => {
   //     try {
-  //       const res = await fetch(url);
+  //       const res = await fetch(`${baseUrl}/page=1`);
   //       const resJson = await res.json();
   //       const dataWithLocation = resJson.data.map((plant) => ({
   //         ...plant,
-  //          firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
-  //         locations: [getRandomLocation(), getRandomLocation(), getRandomLocation(), getRandomLocation()],
-  //    common_name: plant.common_name
-  //    .split("-")
-  //    .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
-  //    .join(" "),
+  //         firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
+  //         locations: [getRandomLocations()],
+  //         common_name: plant.common_name
+  //           .split("-")
+  //           .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+  //           .join(" "),
   //       }));
   //       setPlants(dataWithLocation);
-  //      setPlantSelection(dataWithLocation)
+  //       setPlantSelection(dataWithLocation);
   //       return dataWithLocation;
   //     } catch (error) {
   //       console.log(error);
   //     }
   //   };
   //   // fetchPlants();
+  // }, []);
+
+  // Für echtes Fetching mit mehreren Seiten gleichzeitig:
+  // useEffect(() => {
+  //   const fetchMultiplePages = async () => {
+  //     const fetchPromises = [];
+  //     for (let i = 1; i < 3; i++) {
+  //       const pageUrl = `${baseUrl}&page=${i}`;
+  //       fetchPromises.push(fetch(pageUrl));
+  //     }
+  //     try {
+  //       const allResponses = await Promise.all(fetchPromises);
+  //       const allPlants = [];
+  //       for (let res of allResponses) {
+  //         const resJson = await res.json();
+  //         const dataWithLocation = await resJson.data.map((plant) => ({
+  //           ...plant,
+  //           firstName:
+  //             firstNames[Math.floor(Math.random() * firstNames.length)],
+  //           locations: [getRandomLocations()],
+  //           common_name: plant.common_name
+  //             .split("-")
+  //             .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+  //             .join(" "),
+  //         }));
+  //         allPlants.push(dataWithLocation);
+  //       }
+  //       setPlants(allPlants.flat());
+  //       setPlantSelection(allPlants.flat());
+  //       return plants;
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   // fetchMultiplePages();
   // }, []);
   // console.log(plants);
 
@@ -111,6 +149,12 @@ const PlantsProvider = ({ children }) => {
         setWateringFilter,
         sunlightFilter,
         setSunlightFilter,
+        favorites,
+        setFavorites,
+        currentPlant,
+        setCurrentPlant,
+        currentIndex,
+        setCurrentIndex,
       }}
     >
       {children}
