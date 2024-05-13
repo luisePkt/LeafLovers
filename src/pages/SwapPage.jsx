@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import SwapGallery from "../components/SwapGallery";
 import style from "../styles/swap.module.css";
 import { usePlantsContext } from "../utils/PlantsProvider";
@@ -11,83 +12,133 @@ const SwapPage = () => {
     plantSelection,
     searchInput,
     setSearchInput,
+    locationFilter,
     setLocationFilter,
+    wateringFilter,
     setWateringFilter,
+    sunlightFilter,
     setSunlightFilter,
+    favorites,
   } = usePlantsContext();
+
+  const navigate = useNavigate();
 
   const showMore = () => {
     if (count < plants.length) {
       dispatch({ type: "increase", value: 10 });
     }
   };
+
+  const resetFilters = () => {
+    setSearchInput("");
+    setLocationFilter("all");
+    setWateringFilter("all");
+    setSunlightFilter("all");
+  };
+
   return (
     <div className={style.main}>
       <h2>Find yourself a new plant-based friend in our Swap Exchange!</h2>
 
-      <div className="filterContainer">
-        {/* Search field */}
-        <input
-          className={style.searchInput}
-          type="text"
-          value={searchInput}
-          placeholder="Search for plant names..."
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-          }}
-        />
-        {/* Location filter */}
-        <select
-          className={style.locationSelect}
-          name="location"
-          id="location"
-          onChange={(e) => {
-            setLocationFilter(e.target.value);
-          }}
-        >
-          <option value="all">All Locations</option>
-          {locations.map((location, index) => (
-            <option key={index} value={location}>
-              {location}
-            </option>
-          ))}
-        </select>
-        {/* Watering and Sunlight filters */}
-        <label htmlFor="filterWatering">Watering: </label>
-        <select
-          className={style.wateringSelect}
-          name="filterWatering"
-          id="filterWatering"
-          onChange={(e) => {
-            setWateringFilter(e.target.value);
-          }}
-        >
-          {" "}
-          <option value="all">All</option>
-          <option value="Frequent">Frequent</option>
-          <option value="Average">Average</option>
-          <option value="Minimum">Minimum</option>
-        </select>
-        <label htmlFor="filterSunlight">Sunlight: </label>
-        <select
-          className={style.sunlightSelect}
-          name="filterSunlight"
-          id="filterSunlight"
-          onChange={(e) => {
-            setSunlightFilter(e.target.value);
-          }}
-        >
-          {" "}
-          <option value="all">All</option>
-          <option value="full sun">Full sun</option>
-          <option value="part">Part shade</option>
-          <option value="full shade">Full shade</option>
-        </select>
+      <div className={style.filterContainer}>
+        <div>
+          {/* Search field */}
+          <input
+            className={style.searchInput}
+            type="text"
+            value={searchInput}
+            placeholder="Search for plant"
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          {/* Location filter */}
+          <label className={style.filterLabel} htmlFor="location">
+            Location:{" "}
+          </label>
+          <select
+            className={style.locationSelect}
+            name="location"
+            id="location"
+            value={locationFilter}
+            onChange={(e) => {
+              setLocationFilter(e.target.value);
+            }}
+          >
+            <option value="all">All</option>
+            {locations.map((location, index) => (
+              <option key={index} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          {/* Watering and Sunlight filters */}
+          <label className={style.filterLabel} htmlFor="filterWatering">
+            Watering:{" "}
+          </label>
+          <select
+            className={style.wateringSelect}
+            name="filterWatering"
+            id="filterWatering"
+            onChange={(e) => {
+              setWateringFilter(e.target.value);
+            }}
+            value={wateringFilter}
+          >
+            {" "}
+            <option value="all">All</option>
+            <option value="Frequent">Frequent</option>
+            <option value="Average">Average</option>
+            <option value="Minimum">Minimum</option>
+          </select>
+
+          <label className={style.filterLabel} htmlFor="filterSunlight">
+            Sunlight:{" "}
+          </label>
+          <select
+            className={style.sunlightSelect}
+            name="filterSunlight"
+            id="filterSunlight"
+            onChange={(e) => {
+              setSunlightFilter(e.target.value);
+            }}
+            value={sunlightFilter}
+          >
+            {" "}
+            <option value="all">All</option>
+            <option value="full sun">Full sun</option>
+            <option value="part">Part shade</option>
+            <option value="full shade">Full shade</option>
+          </select>
+        </div>
+        <button className={style.btnReset} onClick={resetFilters}>
+          Reset
+        </button>
       </div>
+
+      <p className={style.resultsNum}>
+        {plantSelection && plantSelection.length > 0
+          ? `${plantSelection.length} matches`
+          : null}
+      </p>
 
       <SwapGallery />
 
       <div className={style.buttonContainer}>
+        {favorites && favorites.length > 0 && (
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/favorites/#");
+            }}
+          >
+            Visit favorites
+          </button>
+        )}
         <button
           onClick={showMore}
           disabled={

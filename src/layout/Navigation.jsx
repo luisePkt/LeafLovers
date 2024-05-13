@@ -1,12 +1,12 @@
 import { useState } from "react";
 import HomePage from "../pages/HomePage";
 import MatchingPage from "../pages/MatchingPage";
-import ResultPage from "../pages/ResultPage";
 import SwapPage from "../pages/SwapPage";
 import { NavLink } from "react-router-dom";
 import style from "../styles/navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import FavoritesPage from "../pages/FavoritesPage";
 
 const Navigation = () => {
   // show and hide navBar:
@@ -23,6 +23,7 @@ const Navigation = () => {
     // { id: 2, name: "result", to: "/result", element: <ResultPage /> },
     //  NOTICE:id anpassen
     { id: 3, name: "swap", to: "/swap", element: <SwapPage /> },
+    { id: 4, name: "favorites", to: "/favorites", element: <FavoritesPage /> },
   ];
 
   // show and hide navBar:

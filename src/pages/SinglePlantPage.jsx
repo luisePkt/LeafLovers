@@ -14,11 +14,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
+import ErrorPage from "./ErrorPage";
 
 const SinglePlantPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { plants } = usePlantsContext();
+  const [showContact, setShowContact] = useState(false);
+  const {
+    plants,
+    favorites,
+    setFavorites,
+    currentPlant,
+    setCurrentPlant,
+    currentIndex,
+    setCurrentIndex,
+  } = usePlantsContext();
 
   // das hier wenn dann in useEffect nutzen (falls es nötig wird):
   //   const initializeCount = () => {
@@ -26,7 +36,14 @@ const SinglePlantPage = () => {
   //   };
   //   initializeCount();
 
-  const currentIndex = plants.findIndex((plant) => plant.id.toString() === id);
+  useEffect(() => {
+    setCurrentPlant(plants.filter((plant) => plant.id.toString() === id)[0]);
+    setCurrentIndex(plants.findIndex((plant) => plant.id.toString() === id));
+  }, [plants, id]);
+
+  useEffect(() => {
+    setShowContact(false);
+  }, [currentPlant]);
 
   const goToPrev = () => {
     navigate(`/plant/${plants[currentIndex - 1].id}`);
@@ -36,106 +53,125 @@ const SinglePlantPage = () => {
     navigate(`/plant/${plants[currentIndex + 1].id}`);
   };
 
-  return (
+  const toggleFavorites = () => {
+    if (favorites.includes(currentPlant)) {
+      setFavorites(favorites.filter((p) => p.id !== currentPlant.id));
+    } else {
+      setFavorites([...favorites, currentPlant]);
+    }
+  };
+
+  const toggleContact = () => {
+    setShowContact(!showContact);
+  };
+
+  return currentPlant && currentPlant.scientific_name ? (
     <div className={style.main}>
-      {plants &&
-        plants.length > 0 &&
-        plants
-          .filter((plant) => plant.id.toString() === id)
-          .map((plant) => (
-            <div key={plant.id} className={style.container}>
-              {plant.default_image && plant.default_image.original_url ? (
-                <img
-                  className={style.img}
-                  src={plant.default_image.original_url}
-                  alt={plant.common_name}
-                />
-              ) : (
-                <div className={style.imgReplacement}>No image available</div>
-              )}
+      {currentPlant && currentPlant.scientific_name && (
+        <div key={currentPlant.id} className={style.container}>
+          {currentPlant.default_image &&
+          currentPlant.default_image.original_url ? (
+            <img
+              className={style.img}
+              src={currentPlant.default_image.original_url}
+              alt={currentPlant.common_name}
+            />
+          ) : (
+            <div className={style.imgReplacement}>No image available</div>
+          )}
 
-              <div className={style.middleSec}>
+          <div className={style.middleSec}>
+            <FontAwesomeIcon
+              className={
+                currentIndex === 0 ? style.switchDisabled : style.switch
+              }
+              icon={faCircleArrowLeft}
+              onClick={goToPrev}
+            />
+            <div className={style.card}>
+              <p className={style.location}>
                 <FontAwesomeIcon
-                  className={
-                    currentIndex === 0 ? style.switchDisabled : style.switch
+                  icon={
+                    favorites.includes(currentPlant)
+                      ? faSolidHeart
+                      : faRegularHeart
                   }
-                  icon={faCircleArrowLeft}
-                  onClick={goToPrev}
+                  className={style.heart}
+                  onClick={toggleFavorites}
                 />
-                <div className={style.card}>
-                  <p className={style.location}>
-                    <FontAwesomeIcon
-                      icon={faRegularHeart}
-                      className={style.heart}
-                    />
-                    <FontAwesomeIcon icon={faLocationDot} />
-                    {" " + plant.locations.join(", ")}
-                  </p>
+                <FontAwesomeIcon icon={faLocationDot} />
+                {" " + currentPlant.locations.join(", ")}
+              </p>
 
-                  <h2>{plant.firstName}</h2>
-                  <h3>{plant.common_name}</h3>
-                  <div className={style.infoDiv}>
-                    <div className={style.infos}>
-                      <h5>{`Botanical name${
-                        plant.scientific_name.length > 1 ? "s" : ""
-                      }: `}</h5>
-                      <p>{plant.scientific_name.join(", ")}</p>
-                    </div>
-                    <div className={style.infos}>
-                      <h5>This plant needs:</h5>
-                      <p>
-                        Watering: {plant.watering} watering{" "}
-                        <FontAwesomeIcon icon={faDroplet} />{" "}
-                        {plant.watering === "Average" && (
-                          <FontAwesomeIcon icon={faDroplet} />
-                        )}{" "}
-                        {plant.watering === "Frequent" && (
-                          <FontAwesomeIcon icon={faDroplet} />
-                        )}{" "}
-                        {plant.watering === "Frequent" && (
-                          <FontAwesomeIcon icon={faDroplet} />
-                        )}
-                      </p>
-                      <p>
-                        Sunlight: {plant.sunlight.join(", ")}{" "}
-                        {plant.sunlight.includes("full shade") && (
-                          <FontAwesomeIcon icon={faCloud} />
-                        )}{" "}
-                        {plant.sunlight.includes("deep shade") && (
-                          <FontAwesomeIcon icon={faCloud} />
-                        )}{" "}
-                        {plant.sunlight.includes("full sun") && (
-                          <FontAwesomeIcon icon={faSun} />
-                        )}{" "}
-                        {plant.sunlight.join("").includes("part") && (
-                          <FontAwesomeIcon icon={faCloudSun} />
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                  <button>Get in touch</button>
+              <h2>{currentPlant.firstName}</h2>
+              <h3>{currentPlant.common_name}</h3>
+              <div className={style.infoDiv}>
+                <div className={style.infos}>
+                  <h5>{`Botanical name${
+                    currentPlant.scientific_name.length > 1 ? "s" : ""
+                  }: `}</h5>
+                  <p>{currentPlant.scientific_name.join(", ")}</p>
                 </div>
-                <FontAwesomeIcon
-                  icon={faCircleArrowRight}
-                  className={
-                    currentIndex === plants.length - 1
-                      ? style.switchDisabled
-                      : style.switch
-                  }
-                  onClick={goToNext}
-                />
+                <div className={style.infos}>
+                  <h5>This plant needs:</h5>
+                  <p>
+                    Watering: {currentPlant.watering} watering{" "}
+                    <FontAwesomeIcon icon={faDroplet} />{" "}
+                    {currentPlant.watering === "Average" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}{" "}
+                    {currentPlant.watering === "Frequent" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}{" "}
+                    {currentPlant.watering === "Frequent" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}
+                  </p>
+                  <p>
+                    Sunlight: {currentPlant.sunlight.join(", ")}{" "}
+                    {currentPlant.sunlight.includes("full shade") && (
+                      <FontAwesomeIcon icon={faCloud} />
+                    )}{" "}
+                    {currentPlant.sunlight.includes("deep shade") && (
+                      <FontAwesomeIcon icon={faCloud} />
+                    )}{" "}
+                    {currentPlant.sunlight.includes("full sun") && (
+                      <FontAwesomeIcon icon={faSun} />
+                    )}{" "}
+                    {currentPlant.sunlight.join("").includes("part") && (
+                      <FontAwesomeIcon icon={faCloudSun} />
+                    )}
+                  </p>
+                </div>
               </div>
-
-              <button
-                onClick={() => {
-                  navigate("/swap");
-                }}
-              >
-                Go back
-              </button>
+              {!showContact && (
+                <button onClick={toggleContact}>Get in touch</button>
+              )}
+              {showContact && <p>Contactbox here</p>}
             </div>
-          ))}
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className={
+                currentIndex === plants.length - 1
+                  ? style.switchDisabled
+                  : style.switch
+              }
+              onClick={goToNext}
+            />
+          </div>
+
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Go back
+          </button>
+        </div>
+      )}
     </div>
+  ) : (
+    <ErrorPage />
   );
 };
 

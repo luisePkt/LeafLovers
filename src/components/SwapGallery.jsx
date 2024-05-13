@@ -1,6 +1,6 @@
 import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/swap.module.css";
-import SinglePlant from "./SinglePlantOverview";
+import SinglePlant from "./SinglePlantCard";
 import { useEffect } from "react";
 
 const SwapGallery = () => {
@@ -15,12 +15,6 @@ const SwapGallery = () => {
     wateringFilter,
     sunlightFilter,
   } = usePlantsContext();
-
-  // const initializeCount = () => {
-  //   if (count < 10) {
-  //     dispatch({ type: "set", value: 10 });
-  //   }
-  // };
 
   useEffect(() => {
     setPlantSelection(plants);
@@ -39,10 +33,6 @@ const SwapGallery = () => {
         let sunlightCheck =
           sunlightFilter === "all" ||
           plant.sunlight.some((string) => string.includes(sunlightFilter));
-        console.log("filter: ", sunlightFilter);
-        console.log("Check: " + sunlightCheck);
-        console.log("plant.sunlight:", plant.sunlight);
-        console.log(`\n`);
         return locationCheck && searchCheck && wateringCheck && sunlightCheck;
       })
     );

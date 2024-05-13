@@ -7,6 +7,7 @@ import ResultPage from "../pages/ResultPage";
 import SwapPage from "../pages/SwapPage";
 import PlantsProvider from "./PlantsProvider";
 import SinglePlantPage from "../pages/SinglePlantPage";
+import FavoritesPage from "../pages/FavoritesPage";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -34,6 +35,7 @@ const Router = () => {
           path: "/plant/:id",
           element: <SinglePlantPage />,
         },
+        { path: "/favorites", element: <FavoritesPage /> },
         {
           path: "*",
           element: <ErrorPage />,
@@ -44,7 +46,7 @@ const Router = () => {
 
   return (
     <PlantsProvider>
-      <RouterProvider router={router} >
+      <RouterProvider router={router}>
         <Layout />
       </RouterProvider>
     </PlantsProvider>
