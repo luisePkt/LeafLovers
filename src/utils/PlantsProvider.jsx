@@ -36,6 +36,7 @@ const PlantsProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [currentPlant, setCurrentPlant] = useState();
   const [currentIndex, setCurrentIndex] = useState();
+  const [navigateBack, setNavigateBack] = useState("/swap");
 
   // result matching:
   const [resultMatching, setResultMatching] = useState([]);
@@ -43,30 +44,36 @@ const PlantsProvider = ({ children }) => {
   const baseUrl =
     "https://perenual.com/api/species-list?key=sk-wAxL6634fec4529a75333&indoor=1";
 
-  const getRandomLocations = () => {
-    const list = [];
-    for (let i = 0; i < Math.floor(Math.random() * 5 + 1); i++) {
-      const current = locations[Math.floor(Math.random() * locations.length)];
-      if (!list.includes(current)) {
-        list.push(current);
+  const getRandomDetails = (x, count) => {
+    const detailsList = [];
+    while (detailsList.length < count) {
+      const currentDetail =
+        x === "locations"
+          ? locations[Math.floor(Math.random() * locations.length)]
+          : firstNames[Math.floor(Math.random() * firstNames.length)];
+      if (!detailsList.includes(currentDetail)) {
+        detailsList.push(currentDetail);
       }
     }
-    return list;
+    return detailsList;
   };
 
   // Für Fakedata:
   useEffect(() => {
-    const fakeDataWithLocation = fakePlants.map((plant) => ({
-      ...plant,
-      firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
-      locations: getRandomLocations(),
-      common_name: plant.common_name
-        .split("-")
-        .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
-        .join(" "),
-    }));
-    setPlants(fakeDataWithLocation);
-    setPlantSelection(fakeDataWithLocation);
+    const fakeDataWithDetails = fakePlants.map((plant) => {
+      let count = Math.floor(Math.random() * 3 + 1);
+      return {
+        ...plant,
+        firstNames: getRandomDetails("firstNames", count),
+        locations: getRandomDetails("locations", count),
+        common_name: plant.common_name
+          .split("-")
+          .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+          .join(" "),
+      };
+    });
+    setPlants(fakeDataWithDetails);
+    setPlantSelection(fakeDataWithDetails);
   }, []);
 
   // Für echtes Fetching (nur Seite 1):
@@ -75,18 +82,18 @@ const PlantsProvider = ({ children }) => {
   //     try {
   //       const res = await fetch(`${baseUrl}/page=1`);
   //       const resJson = await res.json();
-  //       const dataWithLocation = resJson.data.map((plant) => ({
+  //       const dataWithDetails = resJson.data.map((plant) => ({
   //         ...plant,
-  //         firstName: firstNames[Math.floor(Math.random() * firstNames.length)],
-  //         locations: [getRandomLocations()],
+  //        firstNames: getRandomDetails("firstNames", count),
+  // locations: getRandomDetails("locations", count),
   //         common_name: plant.common_name
   //           .split("-")
   //           .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
   //           .join(" "),
   //       }));
-  //       setPlants(dataWithLocation);
-  //       setPlantSelection(dataWithLocation);
-  //       return dataWithLocation;
+  //       setPlants(dataWithDetails);
+  //       setPlantSelection(dataWithDetails);
+  //       return dataWithDetails;
   //     } catch (error) {
   //       console.log(error);
   //     }
@@ -107,17 +114,16 @@ const PlantsProvider = ({ children }) => {
   //       const allPlants = [];
   //       for (let res of allResponses) {
   //         const resJson = await res.json();
-  //         const dataWithLocation = await resJson.data.map((plant) => ({
+  //         const dataWithDetails = await resJson.data.map((plant) => ({
   //           ...plant,
-  //           firstName:
-  //             firstNames[Math.floor(Math.random() * firstNames.length)],
-  //           locations: [getRandomLocations()],
+  //          firstNames: getRandomDetails("firstNames", count),
+  // locations: getRandomDetails("locations", count),
   //           common_name: plant.common_name
   //             .split("-")
   //             .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
   //             .join(" "),
   //         }));
-  //         allPlants.push(dataWithLocation);
+  //         allPlants.push(dataWithDetails);
   //       }
   //       setPlants(allPlants.flat());
   //       setPlantSelection(allPlants.flat());
@@ -155,6 +161,8 @@ const PlantsProvider = ({ children }) => {
         setCurrentPlant,
         currentIndex,
         setCurrentIndex,
+        navigateBack,
+        setNavigateBack,
       }}
     >
       {children}

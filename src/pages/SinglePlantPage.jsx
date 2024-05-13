@@ -1,7 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/singlePlant.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ErrorPage from "./ErrorPage";
+import Contact from "../components/Contact";
 import {
   faLocationDot,
   faCircleArrowRight,
@@ -13,13 +16,12 @@ import {
   faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
-import { useEffect, useState } from "react";
-import ErrorPage from "./ErrorPage";
 
 const SinglePlantPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [showContact, setShowContact] = useState(false);
+  const [showThankyou, setShowThankyou] = useState(false);
   const {
     plants,
     favorites,
@@ -28,13 +30,8 @@ const SinglePlantPage = () => {
     setCurrentPlant,
     currentIndex,
     setCurrentIndex,
+    navigateBack,
   } = usePlantsContext();
-
-  // das hier wenn dann in useEffect nutzen (falls es nötig wird):
-  //   const initializeCount = () => {
-  //     dispatch({ type: "set", value: 1 });
-  //   };
-  //   initializeCount();
 
   useEffect(() => {
     setCurrentPlant(plants.filter((plant) => plant.id.toString() === id)[0]);
@@ -43,6 +40,7 @@ const SinglePlantPage = () => {
 
   useEffect(() => {
     setShowContact(false);
+    setShowThankyou(false);
   }, [currentPlant]);
 
   const goToPrev = () => {
@@ -70,10 +68,14 @@ const SinglePlantPage = () => {
       {currentPlant && currentPlant.scientific_name && (
         <div key={currentPlant.id} className={style.container}>
           {currentPlant.default_image &&
-          currentPlant.default_image.original_url ? (
+          (currentPlant.default_image.small_url ||
+            currentPlant.default_image.original_url) ? (
             <img
               className={style.img}
-              src={currentPlant.default_image.original_url}
+              src={
+                currentPlant.default_image.original_url ||
+                currentPlant.default_image.small_url
+              }
               alt={currentPlant.common_name}
             />
           ) : (
@@ -102,8 +104,14 @@ const SinglePlantPage = () => {
                 <FontAwesomeIcon icon={faLocationDot} />
                 {" " + currentPlant.locations.join(", ")}
               </p>
-
-              <h2>{currentPlant.firstName}</h2>
+              <div className={style.plantDetails}>
+                {currentPlant.locations.map((x, index) => (
+                  <p key={index}>
+                    {currentPlant.firstNames[index]} (
+                    {currentPlant.locations[index]})
+                  </p>
+                ))}
+              </div>
               <h3>{currentPlant.common_name}</h3>
               <div className={style.infoDiv}>
                 <div className={style.infos}>
@@ -144,10 +152,24 @@ const SinglePlantPage = () => {
                   </p>
                 </div>
               </div>
-              {!showContact && (
+              {showThankyou && (
+                <div className={style.thankyouMessage}>
+                  <p>Thank you for your message!</p>
+                  <p className={style.disclaimer}>
+                    This is only a test version of the app. Therefore, your
+                    message was not forwarded and no data was stored.
+                  </p>
+                </div>
+              )}
+              {!showContact && !showThankyou && (
                 <button onClick={toggleContact}>Get in touch</button>
               )}
-              {showContact && <p>Contactbox here</p>}
+              {showContact && (
+                <Contact
+                  setShowContact={setShowContact}
+                  setShowThankyou={setShowThankyou}
+                />
+              )}
             </div>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
@@ -160,13 +182,16 @@ const SinglePlantPage = () => {
             />
           </div>
 
-          <button
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            Go back
-          </button>
+          <div className="buttonSection">
+            {favorites.includes(currentPlant) &&
+              navigateBack !== "/favorites" && (
+                <button onClick={() => navigate("/favorites")}>
+                  My favorites
+                </button>
+              )}
+
+            <button onClick={() => navigate(navigateBack)}>Go back</button>
+          </div>
         </div>
       )}
     </div>

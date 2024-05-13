@@ -2,10 +2,16 @@ import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/favorites.module.css";
 import SinglePlant from "../components/SinglePlantCard";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  const { plants, favorites, setFavorites } = usePlantsContext();
+  const { plants, favorites, setFavorites, setNavigateBack } =
+    usePlantsContext();
+
+  useEffect(() => {
+    setNavigateBack ? setNavigateBack("/favorites") : null;
+  }, [setNavigateBack]);
 
   return (
     <div className={style.main}>

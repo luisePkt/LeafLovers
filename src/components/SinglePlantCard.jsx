@@ -53,16 +53,23 @@ const SinglePlant = ({ plant }) => {
           </span>
         </div>
 
-        {plant.default_image && plant.default_image.thumbnail ? (
+        {plant.default_image &&
+        (plant.default_image.thumbnail ||
+          plant.default_image.small_url ||
+          plant.default_image.original_url) ? (
           <img
             className={style.img}
-            src={plant.default_image.thumbnail}
+            src={
+              plant.default_image.thumbnail ||
+              plant.default_image.small_url ||
+              plant.default_image.original_url
+            }
             alt={plant.common_name}
           />
         ) : (
           <div className={style.imgReplacement}>No image available</div>
         )}
-        <h4>{plant.firstName}</h4>
+        <h4>{plant.firstNames.join(", ")}</h4>
         <p>{plant.common_name}</p>
       </Link>
     </li>

@@ -3,6 +3,7 @@ import SwapGallery from "../components/SwapGallery";
 import style from "../styles/swap.module.css";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import locations from "../utils/locations.js";
+import { useEffect, useRef } from "react";
 
 const SwapPage = () => {
   const {
@@ -19,9 +20,11 @@ const SwapPage = () => {
     sunlightFilter,
     setSunlightFilter,
     favorites,
+    setNavigateBack,
   } = usePlantsContext();
 
   const navigate = useNavigate();
+  const inputRef = useRef();
 
   const showMore = () => {
     if (count < plants.length) {
@@ -36,6 +39,14 @@ const SwapPage = () => {
     setSunlightFilter("all");
   };
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setNavigateBack ? setNavigateBack("/swap") : null;
+  }, [setNavigateBack]);
+
   return (
     <div className={style.main}>
       <h2>Find yourself a new plant-based friend in our Swap Exchange!</h2>
@@ -47,6 +58,7 @@ const SwapPage = () => {
             className={style.searchInput}
             type="text"
             value={searchInput}
+            ref={inputRef}
             placeholder="Search for plant"
             onChange={(e) => {
               setSearchInput(e.target.value);
@@ -136,7 +148,7 @@ const SwapPage = () => {
               navigate("/favorites/#");
             }}
           >
-            Visit favorites
+            My favorites
           </button>
         )}
         <button
