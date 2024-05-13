@@ -23,7 +23,7 @@ const QuizStart = () => {
 
   return (
     <div className={style.main}>
-      <p>Would you like to find out which plant suits you?</p>
+      {!showQuiz && <p>Would you like to find out which plant suits you?</p>}
 
       {/* start button */}
       <button className={style.startBtn} onClick={handleShowQuizz}>

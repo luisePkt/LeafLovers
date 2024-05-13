@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
+import style from "../styles/quizQuestions.module.css";
 
 const QuizQuestions = () => {
   // connection provider to save answer criteria:
@@ -15,6 +16,9 @@ const QuizQuestions = () => {
   // redirect to results page:
   const navigate = useNavigate();
 
+  // für balkendarstellung Fortschritt:
+  const [progress, setProgress] = useState(60);
+
   // source questions:
   const quizQuestions = [
     {
@@ -25,22 +29,22 @@ const QuizQuestions = () => {
         {
           answerText:
             "I don't want to look after the plant for more than a year.",
-          criteria: "annual",
+          criteria: "Annual",
         },
         {
           answerText:
             "I only want to look after the plant for one year, but I want it to flower twice in that time.",
-          criteria: "biannual",
+          criteria: ["Annual", "Biannual"],
         },
         {
           answerText:
             "I can be there for the plant for more than a year. But I wouldn't want it for longer than two years.",
-          criteria: "biennial",
+          criteria: ["Annual", "Biennial"],
         },
         {
           answerText:
             "I would like a plant that is perennial and will hopefully be with me for a very long time.",
-          criteria: "perennial",
+          criteria: "Perennial",
         },
       ],
     },
@@ -51,19 +55,19 @@ const QuizQuestions = () => {
       answerChoices: [
         {
           answerText: "...  take care of a plant often.",
-          criteria: "frequent",
+          criteria: ["Frequent", "Average"],
         },
         {
           answerText: "...  take care of a plant regularly.",
-          criteria: "average",
+          criteria: ["Average", "Minimum"],
         },
         {
           answerText: "... take care of a plant as little as possible.",
-          criteria: "minimum",
+          criteria: ["Minimum", "None"],
         },
         {
           answerText: "...  actually not take care of a plant at all.",
-          criteria: "none",
+          criteria: "None",
         },
       ],
     },
@@ -83,19 +87,19 @@ const QuizQuestions = () => {
       answerChoices: [
         {
           answerText: "... very shady place.",
-          criteria: "full shade",
+          criteria: ["full shade", " part shade"],
         },
         {
           answerText: "... semi-shady place.",
-          criteria: "part shade",
+          criteria: ["full sun", " part shade", "part sun/part shade"],
         },
         {
           answerText: "... sunny place with partial shade.",
-          criteria: ["full sun", " part shade"],
+          criteria: ["full sun", " part shade", "part sun/part shade"],
         },
         {
           answerText: "... very sunny place.",
-          criteria: "full sun",
+          criteria: ["full sun", "part sun/part shade"],
         },
       ],
     },
@@ -120,6 +124,7 @@ const QuizQuestions = () => {
   const handleQuestion = (answerIndex) => {
     // eröht index um 1
     const nextQuestion = currQuestion + 1;
+    setProgress((val) => val + 60);
     // console.log(
     //   `Adding criterion: ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`
     // );
@@ -173,29 +178,27 @@ const QuizQuestions = () => {
   // [showResult, navigate] => navigate hier wichtig, damit immer aktuellste Version von navigate-function verwendet wird
 
   return (
-    <div>
+    <div className={style.questionBox}>
       {/* questions: */}
-      <p>{quizQuestions[currQuestion].questionText}</p>
+      <h4>{quizQuestions[currQuestion].questionText}</h4>
 
       {/* answers: */}
       {quizQuestions[currQuestion].answerChoices.map((answerChoice, index) => (
-        // NOTICE wie komme ich an id?
-        <button key={index} onClick={() => handleQuestion(index)}>
+        <button
+          key={index}
+          onClick={() => handleQuestion(index)}
+          className={style.questionBtn}
+        >
           {answerChoice.answerText}
         </button>
       ))}
 
-      {/* show result on same page*/}
-      {/* {showResult && (
-        <div>
-          <ul>
-            {answerCriteria.map((criteria, index) => (
-              // NOTICE: besster abfrage nach art der daten und dann, wenn boolen toString()?
-              <li key={index}>{criteria.toString()}</li>
-            ))}
-          </ul>
-        </div>
-      )} */}
+      <div className={style.progressBox}>
+        <div
+          className={style.progressBar}
+          style={{ width: `${progress}px` }}
+        ></div>
+      </div>
 
       {/* Umleitung mit button */}
       {/* {showResult && <button onClick={handleRedirection}>show result</button>} */}

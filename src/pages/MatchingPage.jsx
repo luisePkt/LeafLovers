@@ -3,8 +3,10 @@ import QuizStart from "../components/QuizStart";
 
 const MatchingPage = () => {
   return (
-    <div className={style.main}>
-      <QuizStart />
+    <div className={style.container}>
+      <div className={style.main}>
+        <QuizStart />
+      </div>
     </div>
   );
 };
