@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 3em); /* noch anpassen je nach Höhe des Headers */
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,7 +13,7 @@
   align-items: center;
   text-align: center;
   background-color: var(--boxPrimary);
-  width: clamp(300px, 50%, 700px);
+  /* width: clamp(300px, 50%, 700px); */
   min-height: 300px;
   padding: 1em;
   margin: 1em;

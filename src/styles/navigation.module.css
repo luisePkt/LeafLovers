@@ -42,6 +42,7 @@ nav {
   color: var(--bgPrimary);
   font-weight: 700;
   letter-spacing: 1px;
+  font-size: 28px;
 }
 
 .navLink:hover {
@@ -58,6 +59,7 @@ nav {
     display: block;
     cursor: pointer;
     color: var(--bgPrimary);
+    font-size: 28px;
   }
 
   .menuIcon:hover {

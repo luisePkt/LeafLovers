@@ -1,0 +1,36 @@
+.questionBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 1em clamp(2em, 5%, 4em);
+  margin: clamp(1vw, 1%, 2vw);
+  width: clamp(300px, 80%, 700px);
+  /* background-color: var(--bgPrimary; */
+}
+
+.questionBtn {
+  text-align: start;
+  /* width: auto; */
+}
+
+.progressBox {
+  display: flex;
+
+  background-color: var(--bgPrimary);
+  /* width: clamp(300px, 80%, 700px); */
+  width: 300px;
+  height: 20px;
+  border-radius: 10px;
+  align-self: center;
+  align-items: center;
+  justify-content: start;
+  padding: 5px;
+}
+
+.progressBar {
+  background-color: var(--bgSecondary);
+  height: 10px;
+  /* width: 20px; */
+  border-radius: 5px;
+}

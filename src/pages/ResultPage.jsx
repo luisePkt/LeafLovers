@@ -1,7 +1,14 @@
 import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/result.module.css";
 import { useEffect, useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDroplet,
+  faCloud,
+  faSun,
+  faCloudSun,
+  faHeart as faSolidHeart,
+} from "@fortawesome/free-solid-svg-icons";
 const ResultPage = () => {
   // connection provider:
   const { resultMatching, setResultMatching, plants } = usePlantsContext();
@@ -15,25 +22,20 @@ const ResultPage = () => {
     return plants.filter((plant) => {
       let matchingCount = 0;
 
-      // alles in Kleinbuchstaben wegen key-sensitivity
-      const uppercasedResultMatching = resultMatching.map((value) =>
-        value.toLowerCase()
-      );
-
       // Überprüfen, ob die Eigenschaften existieren und Strings sind
       const cycleIsString = typeof plant.cycle === "string";
       const wateringIsString = typeof plant.watering === "string";
-      // sunlight ist kein string, deshalb:
-      const sunlightIsString = typeof plant.sunlight === "string";
+      // const sunlightIsString = typeof plant.sunlight === "string";
+      // sunlight ist kein string, sondern ein array, deshalb:
+      const sunlightIsString = Array.isArray(plant.sunlight);
 
       // Überprüfen, ob mindestens eine der Eigenschaften in resultMatching ist
       if (
-        (plant.cycle &&
-          uppercasedResultMatching.includes(plant.cycle.toLowerCase())) ||
-        (wateringIsString &&
-          uppercasedResultMatching.includes(plant.watering.toLowerCase())) ||
+        (cycleIsString && resultMatching.includes(plant.cycle)) ||
+        (wateringIsString && resultMatching.includes(plant.watering)) ||
+        // (sunlightIsString && resultMatching.includes(plant.sunlight))
         (sunlightIsString &&
-          uppercasedResultMatching.includes(plant.sunlight.toLowerCase()))
+          resultMatching.some((item) => resultMatching.includes(item)))
       ) {
         matchingCount++;
       }
@@ -48,19 +50,22 @@ const ResultPage = () => {
   const filteredPlants = filterPlants(plants, resultMatching);
   console.log(filteredPlants);
 
-  // ein Pflanzenobjekt per Zufall auswählen:
-
-  const randomSelectedPlant = () => {
+  // funktion button zur auswahl einer anderen pflanze:
+  const handleNewRandomPlant = () => {
+    // ein Pflanzenobjekt per Zufall auswählen:
     const yourPlantIndex = Math.floor(Math.random() * filteredPlants.length);
     setRandomPlant(filteredPlants[yourPlantIndex]);
   };
 
+  useEffect(() => {
+    handleNewRandomPlant();
+  }, []);
   console.log(randomPlant);
 
   return (
     <div className={style.main}>
-      <div className={style.card}>
-        <h3>This could be your new plant friend</h3>
+      <div className={style.container}>
+        <h2>This could be your new plant friend:</h2>
         {/* Eigenschaften aus Quiz */}
         {/* {
           <div>
@@ -72,7 +77,70 @@ const ResultPage = () => {
           </div>
         } */}
 
-        {/* <button onClick={selectPlant}>finde me another plant friend</button> */}
+        <div className={style.container}>
+          {randomPlant && randomPlant.default_image ? (
+            <img
+              src={
+                randomPlant.default_image.small_url ||
+                randomPlant.default_original_url
+              }
+              alt="plant image"
+            />
+          ) : (
+            <div className={style.imgReplacement}>
+              <p>No image available</p>
+            </div>
+          )}
+
+          <div className={style.middleSec}>
+            {randomPlant && (
+              <div className={style.card}>
+                <h2>{randomPlant.common_name}</h2>
+                <div className={style.infos}>
+                  <h5>{`Botanical name ${
+                    randomPlant.scientific_name.length > 1 ? "s" : ""
+                  }: `}</h5>
+                  <p>{randomPlant.scientific_name.join(", ")}</p>
+                </div>
+                <div className={style.infos}>
+                  <h5>This plant needs:</h5>
+                  <p>
+                    Watering: {randomPlant.watering} watering{" "}
+                    <FontAwesomeIcon icon={faDroplet} />{" "}
+                    {randomPlant.watering === "Average" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}{" "}
+                    {randomPlant.watering === "Frequent" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}{" "}
+                    {randomPlant.watering === "Frequent" && (
+                      <FontAwesomeIcon icon={faDroplet} />
+                    )}
+                  </p>
+                  <p>
+                    Sunlight: {randomPlant.sunlight.join(", ")}{" "}
+                    {randomPlant.sunlight.includes("full shade") && (
+                      <FontAwesomeIcon icon={faCloud} />
+                    )}{" "}
+                    {randomPlant.sunlight.includes("deep shade") && (
+                      <FontAwesomeIcon icon={faCloud} />
+                    )}{" "}
+                    {randomPlant.sunlight.includes("full sun") && (
+                      <FontAwesomeIcon icon={faSun} />
+                    )}{" "}
+                    {randomPlant.sunlight.join("").includes("part") && (
+                      <FontAwesomeIcon icon={faCloudSun} />
+                    )}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button onClick={handleNewRandomPlant}>
+          finde me another plant friend
+        </button>
       </div>
     </div>
   );
