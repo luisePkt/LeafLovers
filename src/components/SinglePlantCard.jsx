@@ -34,24 +34,28 @@ const SinglePlant = ({ plant }) => {
             ? "Remove from favorites"
             : "Add to favorites"}
         </p>
-        <div className={style.location}>
-          <FontAwesomeIcon icon={faLocationDot} />
 
-          {" " + plant.locations[0]}
+        {plant.locations && (
+          <div className={style.location}>
+            <FontAwesomeIcon icon={faLocationDot} />
 
-          {plant.locations.length > 1 && " and "}
+            {" " + plant.locations[0]}
 
-          <span className={style.otherLocation}>
-            {plant.locations.length > 1 &&
-              `${plant.locations.length - 1} other location${
-                plant.locations.length > 2 ? "s" : ""
-              }`}
-          </span>
+            {plant.locations.length > 1 && " and "}
 
-          <span className={style.otherLocationDetail}>
-            {plant.locations.length > 1 && plant.locations.slice(1).join(", ")}
-          </span>
-        </div>
+            <span className={style.otherLocation}>
+              {plant.locations.length > 1 &&
+                `${plant.locations.length - 1} other location${
+                  plant.locations.length > 2 ? "s" : ""
+                }`}
+            </span>
+
+            <span className={style.otherLocationDetail}>
+              {plant.locations.length > 1 &&
+                plant.locations.slice(1).join(", ")}
+            </span>
+          </div>
+        )}
 
         {plant.default_image &&
         (plant.default_image.thumbnail ||
@@ -70,9 +74,11 @@ const SinglePlant = ({ plant }) => {
           <div className={style.imgReplacement}>No image available</div>
         )}
         <h4>{plant.common_name}</h4>
-        <p>
-          <em>{plant.firstNames.join(", ")}</em>
-        </p>
+        {plant.firstNames && (
+          <p>
+            <em>{plant.firstNames.join(", ")}</em>
+          </p>
+        )}
       </Link>
     </li>
   );

@@ -43,6 +43,10 @@
   color: black;
 }
 
+.card h3 {
+  margin-top: 30px;
+}
+
 .img,
 .imgReplacement {
   width: clamp(300px, 90%, 500px);
@@ -75,10 +79,13 @@
 }
 
 .favInstruction {
+  position: absolute;
+  top: 1em;
+  right: 4em;
   color: rgb(71, 71, 71);
-  padding: 0.3em 0.8em;
   display: none;
   text-align: center;
+  font-size: 0.8em;
 }
 
 .heart:hover ~ .favInstruction {
@@ -140,4 +147,8 @@
 
 .thankyouMessage .disclaimer {
   font-size: 0.8em;
+}
+
+.buttonSection {
+  margin-bottom: 30px;
 }

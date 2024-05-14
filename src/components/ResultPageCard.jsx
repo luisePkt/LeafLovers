@@ -11,13 +11,15 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ResultPageCard = ({ plant }) => {
+  
   const navigate = useNavigate();
 
   const goToPlant = () => {
     navigate(`/plant/${plant.id}`);
   };
 
-  return (
+  return plant ? (
+
     <div className={style.card}>
       <h3>{plant.common_name}</h3>
       {plant.default_image ? (
@@ -63,6 +65,8 @@ const ResultPageCard = ({ plant }) => {
       </div>
       <button onClick={goToPlant}>adopt me</button>
     </div>
+  ) : (
+    <div>no plant available</div>
   );
 };
 

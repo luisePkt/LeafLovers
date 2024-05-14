@@ -145,17 +145,19 @@ const SinglePlantPage = () => {
                   </p>
                 </div>
               </div>
-              <div className={style.plantDetails}>
-                <h5>This plant is currently available here: </h5>
-                <p className={style.location}></p>
-                {currentPlant.locations.map((x, index) => (
-                  <p key={index}>
-                    <FontAwesomeIcon icon={faLocationDot} />{" "}
-                    {currentPlant.locations[index]}:{" "}
-                    <em> {currentPlant.firstNames[index]}</em>
-                  </p>
-                ))}
-              </div>
+              {currentPlant.locations && currentPlant.firstNames && (
+                <div className={style.plantDetails}>
+                  <h5>This plant is currently available here: </h5>
+                  <p className={style.location}></p>
+                  {currentPlant.locations.map((x, index) => (
+                    <p key={index}>
+                      <FontAwesomeIcon icon={faLocationDot} />{" "}
+                      {currentPlant.locations[index]}:{" "}
+                      <em> {currentPlant.firstNames[index]}</em>
+                    </p>
+                  ))}
+                </div>
+              )}
               {showThankyou && (
                 <div className={style.thankyouMessage}>
                   <p>Thank you for your message!</p>
@@ -186,15 +188,20 @@ const SinglePlantPage = () => {
             />
           </div>
 
-          <div className="buttonSection">
+          <div className={style.buttonSection}>
             {favorites.includes(currentPlant) &&
               navigateBack !== "/favorites" && (
                 <button onClick={() => navigate("/favorites")}>
                   My favorites
                 </button>
               )}
-
-            <button onClick={() => navigate(navigateBack)}>Go back</button>
+            <button
+              onClick={() => {
+                navigate(navigateBack);
+              }}
+            >
+              Go back
+            </button>
           </div>
         </div>
       )}

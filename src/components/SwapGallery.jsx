@@ -17,8 +17,10 @@ const SwapGallery = () => {
   } = usePlantsContext();
 
   useEffect(() => {
-    setPlantSelection(plants);
-  }, []);
+    if (plants.length > 0) {
+      setPlantSelection(plants);
+    }
+  }, [plants]);
 
   useEffect(() => {
     setPlantSelection(

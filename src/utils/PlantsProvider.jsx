@@ -37,11 +37,18 @@ const PlantsProvider = ({ children }) => {
   const [currentPlant, setCurrentPlant] = useState();
   const [currentIndex, setCurrentIndex] = useState();
   const [navigateBack, setNavigateBack] = useState("/swap");
+  const [randomIds, setRandomIds] = useState([]);
 
   const [images, setImages] = useState([]);
 
   // result matching:
   const [resultMatching, setResultMatching] = useState([]);
+
+  const getRandomId = () => Math.floor(Math.random() * plants.length - 1);
+
+  useEffect(() => {
+    setRandomIds([getRandomId(), getRandomId(), getRandomId()]);
+  }, [plants]);
 
   const getRandomDetails = (x, count) => {
     const detailsList = [];
@@ -131,6 +138,8 @@ const PlantsProvider = ({ children }) => {
         setCurrentIndex,
         navigateBack,
         setNavigateBack,
+        randomIds,
+        setRandomIds,
       }}
     >
       {children}
