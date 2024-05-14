@@ -29,6 +29,7 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,21 +57,32 @@
 }
 
 .location {
-  position: relative;
   width: 100%;
   color: rgb(71, 71, 71);
 }
 
 .heart {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 1em;
+  top: 1em;
   font-size: 1.5em;
   cursor: pointer;
+  color: rgb(71, 71, 71);
 }
 
-.plantDetails {
-  margin: 1em 0;
+.heart:hover {
+  color: var(--bgSecondary);
+}
+
+.favInstruction {
+  color: rgb(71, 71, 71);
+  padding: 0.3em 0.8em;
+  display: none;
+  text-align: center;
+}
+
+.heart:hover ~ .favInstruction {
+  display: block;
 }
 
 .infos {
@@ -93,6 +105,7 @@
 .contact {
   background-color: var(--bgSecondary);
   padding: 1em;
+  margin: 1em;
   border-radius: 0.5em;
 }
 
@@ -106,6 +119,7 @@
 .contact select {
   display: block;
   padding: 0.5em;
+  width: 100%;
 }
 
 .contact select:focus {
