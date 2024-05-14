@@ -82,6 +82,7 @@ const PlantsProvider = ({ children }) => {
     fetchImages();
   }, []);
 
+
   // Für Fakedata:
   useEffect(() => {
     if (images.length > 0) {
@@ -105,6 +106,7 @@ const PlantsProvider = ({ children }) => {
       console.log("plants", plants);
     }
   }, [images]);
+
 
   return (
     <PlantsContext.Provider
