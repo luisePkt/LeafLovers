@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HomePage from "../pages/HomePage";
 import MatchingPage from "../pages/MatchingPage";
 import SwapPage from "../pages/SwapPage";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import style from "../styles/navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,7 @@ const Navigation = () => {
   const menuIconRef = useRef(null);
 
   const routes = [
-    { id: 0, name: "home", to: "/", element: <HomePage /> },
+    // { id: 0, name: "home", to: "/", element: <HomePage /> },
     {
       id: 1,
       name: "matching",
@@ -69,7 +69,9 @@ const Navigation = () => {
       {/* logo */}
       <div className={style.logo}>
         {/* <p>FL</p> */}
-        <img src={logo} alt="" style={{ width: "70px" }} />
+        <Link to="/">
+          <img src={logo} alt="Logo LeafLovers" style={{ width: "70px" }} />
+        </Link>
       </div>
 
       {/* bars */}
