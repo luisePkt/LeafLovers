@@ -28,17 +28,30 @@ const ResultPage = () => {
       // Überprüfen, ob die Eigenschaften existieren und Strings sind
       const cycleIsString = typeof plant.cycle === "string";
       const wateringIsString = typeof plant.watering === "string";
-      // const sunlightIsString = typeof plant.sunlight === "string";
       // sunlight ist kein string, sondern ein array, deshalb:
-      const sunlightIsString = Array.isArray(plant.sunlight);
+      const sunlightIsArray = Array.isArray(plant.sunlight);
+      const edibleToString = typeof plant.edible === "string";
+      const poisonousToString = typeof plant.poisonous === "string";
+
+      // test:
+      // if (
+      //   typeof plant.cycle === "string" &&
+      //   resultMatching.some((item) => item.includes(plant.sunlight))
+      // ) {
+      //   console.log("Bedingung erfüllt");
+      // } else {
+      //   console.log("Bedingung nicht erfüllt");
+      // }
+      ////////////////
 
       // Überprüfen, ob mindestens eine der Eigenschaften in resultMatching ist
       if (
         (cycleIsString && resultMatching.includes(plant.cycle)) ||
         (wateringIsString && resultMatching.includes(plant.watering)) ||
-        // (sunlightIsString && resultMatching.includes(plant.sunlight))
-        (sunlightIsString &&
-          resultMatching.some((item) => resultMatching.includes(item)))
+        (sunlightIsArray &&
+          resultMatching.some((item) => item.includes(plant.sunlight))) ||
+        (edibleToString && resultMatching.includes(plant.edible)) ||
+        (poisonousToString && resultMatching.includes(plant.poisonous))
       ) {
         matchingCount++;
       }
@@ -102,7 +115,7 @@ const ResultPage = () => {
         } */}
 
         {/* <div> */}
-          {/* {randomPlant && randomPlant.default_image ? (
+        {/* {randomPlant && randomPlant.default_image ? (
             <img
               src={
                 randomPlant.default_image.small_url ||
@@ -116,15 +129,15 @@ const ResultPage = () => {
             </div>
           )} */}
 
-          {/* <div className={style.middleSec}> */}
-            {randomPlant && (
-              <ul className={style.cardsContainer}>
-                {randomPlant.map((plant) => (
-                  <ResultPageCard key={plant.id} plant={plant} />
-                ))}
-              </ul>
-            )}
-            {/* {randomPlant && (
+        {/* <div className={style.middleSec}> */}
+        {randomPlant && (
+          <ul className={style.cardsContainer}>
+            {randomPlant.map((plant) => (
+              <ResultPageCard key={plant.id} plant={plant} />
+            ))}
+          </ul>
+        )}
+        {/* {randomPlant && (
               <div className={style.card}>
                 <h2>{randomPlant.common_name}</h2>
                 <div className={style.infos}>
@@ -166,7 +179,7 @@ const ResultPage = () => {
                 </div>
               </div>
             )} */}
-          {/* </div> */}
+        {/* </div> */}
         {/* </div> */}
 
         <button onClick={handleNewRandomPlant}>
