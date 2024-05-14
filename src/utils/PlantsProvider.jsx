@@ -135,6 +135,7 @@ const PlantsProvider = ({ children }) => {
   //   // fetchMultiplePages();
   // }, []);
   // console.log(plants);
+  
 
   return (
     <PlantsContext.Provider
