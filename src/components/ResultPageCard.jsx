@@ -8,8 +8,15 @@ import {
   faCloudSun,
   faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const ResultPageCard = ({ plant }) => {
+  const navigate = useNavigate();
+
+  const goToPlant = () => {
+    navigate(`/plant/${plant.id}`);
+  };
+
   return (
     <div className={style.card}>
       <h3>{plant.common_name}</h3>
@@ -27,10 +34,8 @@ const ResultPageCard = ({ plant }) => {
       <div className={style.infos}>
         <h5>This plant needs:</h5>
         <p>
-          Watering: 
-          {/* {plant.watering} watering */}
-          {" "}
-          <FontAwesomeIcon icon={faDroplet} />{" "}
+          Watering:
+          {/* {plant.watering} watering */} <FontAwesomeIcon icon={faDroplet} />{" "}
           {plant.watering === "Average" && <FontAwesomeIcon icon={faDroplet} />}{" "}
           {plant.watering === "Frequent" && (
             <FontAwesomeIcon icon={faDroplet} />
@@ -41,8 +46,7 @@ const ResultPageCard = ({ plant }) => {
         </p>
         <p>
           Sunlight:
-           {/* {plant.sunlight.join(", ")} */}
-           {" "}
+          {/* {plant.sunlight.join(", ")} */}{" "}
           {plant.sunlight.includes("full shade") && (
             <FontAwesomeIcon icon={faCloud} />
           )}{" "}
@@ -57,6 +61,7 @@ const ResultPageCard = ({ plant }) => {
           )}
         </p>
       </div>
+      <button onClick={goToPlant}>adopt me</button>
     </div>
   );
 };
