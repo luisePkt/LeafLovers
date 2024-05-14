@@ -91,27 +91,20 @@ const SinglePlantPage = () => {
               onClick={goToPrev}
             />
             <div className={style.card}>
-              <p className={style.location}>
-                <FontAwesomeIcon
-                  icon={
-                    favorites.includes(currentPlant)
-                      ? faSolidHeart
-                      : faRegularHeart
-                  }
-                  className={style.heart}
-                  onClick={toggleFavorites}
-                />
-                <FontAwesomeIcon icon={faLocationDot} />
-                {" " + currentPlant.locations.join(", ")}
+              <FontAwesomeIcon
+                icon={
+                  favorites.includes(currentPlant)
+                    ? faSolidHeart
+                    : faRegularHeart
+                }
+                className={style.heart}
+                onClick={toggleFavorites}
+              />
+              <p className={style.favInstruction}>
+                {favorites.includes(currentPlant)
+                  ? "Remove from favorites"
+                  : "Add to favorites"}
               </p>
-              <div className={style.plantDetails}>
-                {currentPlant.locations.map((x, index) => (
-                  <p key={index}>
-                    {currentPlant.firstNames[index]} (
-                    {currentPlant.locations[index]})
-                  </p>
-                ))}
-              </div>
               <h3>{currentPlant.common_name}</h3>
               <div className={style.infoDiv}>
                 <div className={style.infos}>
@@ -151,6 +144,17 @@ const SinglePlantPage = () => {
                     )}
                   </p>
                 </div>
+              </div>
+              <div className={style.plantDetails}>
+                <h5>This plant is currently available here: </h5>
+                <p className={style.location}></p>
+                {currentPlant.locations.map((x, index) => (
+                  <p key={index}>
+                    <FontAwesomeIcon icon={faLocationDot} />{" "}
+                    {currentPlant.locations[index]}:{" "}
+                    <em> {currentPlant.firstNames[index]}</em>
+                  </p>
+                ))}
               </div>
               {showThankyou && (
                 <div className={style.thankyouMessage}>

@@ -69,8 +69,10 @@ const SinglePlant = ({ plant }) => {
         ) : (
           <div className={style.imgReplacement}>No image available</div>
         )}
-        <h4>{plant.firstNames.join(", ")}</h4>
-        <p>{plant.common_name}</p>
+        <h4>{plant.common_name}</h4>
+        <p>
+          <em>{plant.firstNames.join(", ")}</em>
+        </p>
       </Link>
     </li>
   );
