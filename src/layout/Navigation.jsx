@@ -6,10 +6,9 @@ import { NavLink } from "react-router-dom";
 import style from "../styles/navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../public/logo_klein_farbig.svg";
+import logo from "../assets/logo_klein_farbig.svg";
 import { useRef } from "react";
 import FavoritesPage from "../pages/FavoritesPage";
-
 
 const Navigation = () => {
   // show and hide navBar:
