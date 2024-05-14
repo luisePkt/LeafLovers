@@ -6,8 +6,8 @@ import {
   useContext,
 } from "react";
 import { fakePlants } from "./FakeData";
-import locations from "./locations";
-import firstNames from "./firstNames";
+import locations from "../utils/locations";
+import firstNames from "../utils/firstNames";
 
 const initialState = 10;
 const reducer = (state, action) => {
