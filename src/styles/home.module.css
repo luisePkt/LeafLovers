@@ -4,9 +4,20 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 3em); /* noch anpassen je nach Höhe des Headers */
-  margin: 50px 1em 1em 1em;
+  margin: 120px 1em 1em 1em;
 }
 
 button.homeBtn {
   width: clamp(300px, 50%, 700px);
+}
+
+.previewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  text-decoration: none;
 }

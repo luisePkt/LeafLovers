@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ResultPageCard = ({ plant }) => {
-  return (
+  return plant ? (
     <div className={style.card}>
       <h3>{plant.common_name}</h3>
       {plant.default_image ? (
@@ -27,10 +27,8 @@ const ResultPageCard = ({ plant }) => {
       <div className={style.infos}>
         <h5>This plant needs:</h5>
         <p>
-          Watering: 
-          {/* {plant.watering} watering */}
-          {" "}
-          <FontAwesomeIcon icon={faDroplet} />{" "}
+          Watering:
+          {/* {plant.watering} watering */} <FontAwesomeIcon icon={faDroplet} />{" "}
           {plant.watering === "Average" && <FontAwesomeIcon icon={faDroplet} />}{" "}
           {plant.watering === "Frequent" && (
             <FontAwesomeIcon icon={faDroplet} />
@@ -41,8 +39,7 @@ const ResultPageCard = ({ plant }) => {
         </p>
         <p>
           Sunlight:
-           {/* {plant.sunlight.join(", ")} */}
-           {" "}
+          {/* {plant.sunlight.join(", ")} */}{" "}
           {plant.sunlight.includes("full shade") && (
             <FontAwesomeIcon icon={faCloud} />
           )}{" "}
@@ -58,6 +55,8 @@ const ResultPageCard = ({ plant }) => {
         </p>
       </div>
     </div>
+  ) : (
+    <div>no plant available</div>
   );
 };
 
