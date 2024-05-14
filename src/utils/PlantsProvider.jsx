@@ -5,7 +5,7 @@ import {
   useReducer,
   useContext,
 } from "react";
-import { fakePlants } from "./FakeDataNoImages";
+import { fakePlants } from "./FakeDataFromKI";
 import locations from "./locations";
 import firstNames from "./firstNames";
 
@@ -72,7 +72,7 @@ const PlantsProvider = ({ children }) => {
         const imgs = resJson.hits.map((plant) => ({
           ...plant,
         }));
-        console.log("imgs", imgs);
+
         setImages(imgs);
         return imgs;
       } catch (error) {
@@ -82,11 +82,9 @@ const PlantsProvider = ({ children }) => {
     fetchImages();
   }, []);
 
-
   // Für Fakedata:
   useEffect(() => {
     if (images.length > 0) {
-      console.log("images", images);
       const dataWithDetails = plants.map((plant) => {
         let count = Math.floor(Math.random() * 3 + 1);
         let image = getRandomImage();
@@ -103,10 +101,8 @@ const PlantsProvider = ({ children }) => {
       });
       setPlants(dataWithDetails);
       setPlantSelection(dataWithDetails);
-      console.log("plants", plants);
     }
   }, [images]);
-
 
   return (
     <PlantsContext.Provider
