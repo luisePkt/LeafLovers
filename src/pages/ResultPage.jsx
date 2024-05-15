@@ -10,7 +10,6 @@ const ResultPage = () => {
   const [filteredPlants, setFilteredPlants] = useState([]);
   const navigate = useNavigate();
 
-  // Filtert Pflanzen basierend auf Übereinstimmungen mit resultMatching
   const filterPlants = () => {
     const filtArray = [];
     plants.map((plant) => {
@@ -81,11 +80,8 @@ const ResultPage = () => {
 
   return (
     <div className={style.main}>
-      {/* {filteredPlants.length > 0 && filteredPlants[0].cycle}
-      {randomPlants.length > 0 && randomPlants[0].cycle} */}
+      <h2>One of these three could become your new plant friend:</h2>
       <div className={style.container}>
-        <h2>One of these three could become your new plant friend:</h2>
-
         {randomPlants.length > 0 && (
           <ul className={style.cardsContainer}>
             {randomPlants.map((plant) => (

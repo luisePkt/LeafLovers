@@ -6,16 +6,12 @@ import style from "../styles/quizQuestions.module.css";
 const QuizQuestions = () => {
   // connection provider to save answer criteria:
   const { resultMatching, setResultMatching } = usePlantsContext([]);
-
   // show current question:
   const [currQuestion, setCurrQuestion] = useState(0);
   // show result:
   const [showResult, setShowResult] = useState(false);
-  // save answer criteria:
-  // const [answerCriteria, setAnswerCriteria] = useState([]);
   // redirect to results page:
   const navigate = useNavigate();
-
   // für balkendarstellung Fortschritt:
   const [progress, setProgress] = useState(60);
 
@@ -125,11 +121,9 @@ const QuizQuestions = () => {
     // eröht index um 1
     const nextQuestion = currQuestion + 1;
     setProgress((val) => val + 60);
-    // console.log(
-    //   `Adding criterion: ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`
-    // );
+ 
     if (nextQuestion < quizQuestions.length) {
-      // setzt eröht value als neuen index
+      // eröht value als neuen index
       setCurrQuestion(nextQuestion);
       setResultMatching((prevCriteria) => [
         ...prevCriteria,
@@ -141,12 +135,7 @@ const QuizQuestions = () => {
         // gibt konkretes criteria aus:
         // quizQuestions[1].answerChoice[1].criteria,
       ]);
-      // } else {
-      // console.log(resultMatching);
-      // console.log(typeof resultMatching);
-      //   setShowResult(true);
-      // }
-      // } else if (nextQuestion === quizQuestions.length) {
+   
     } else {
       // fügt letzten Wert ins Array hinzu:
       setResultMatching((prevCriteria) => [
@@ -154,20 +143,12 @@ const QuizQuestions = () => {
         quizQuestions[currQuestion].answerChoices[
           answerIndex
         ].criteria.toString(),
-        // `${quizQuestions[currQuestion].criteriaName} : ${quizQuestions[currQuestion].answerChoices[answerIndex].criteria}`,
       ]);
-      // console.log(`Array: ${resultMatching}`);
-      // console.log(resultMatching);
+
       setShowResult(true);
     }
 
-    // setCurrQuestion(nextQuestion);
   };
-
-  // redirect to results page with button:
-  // const handleRedirection = () => {
-  //   navigate("/result");
-  // };
 
   // redirect to results page automatically:
   useEffect(() => {
@@ -199,9 +180,6 @@ const QuizQuestions = () => {
           style={{ width: `${progress}px` }}
         ></div>
       </div>
-
-      {/* Umleitung mit button */}
-      {/* {showResult && <button onClick={handleRedirection}>show result</button>} */}
     </div>
   );
 };

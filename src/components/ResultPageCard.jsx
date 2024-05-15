@@ -47,8 +47,7 @@ const ResultPageCard = ({ plant }) => {
       <div className={style.infos}>
         <h5>This plant needs: </h5>
         <p>
-          Watering:
-          {/* {plant.watering} watering */} <FontAwesomeIcon icon={faDroplet} />{" "}
+          Watering: <FontAwesomeIcon icon={faDroplet} />{" "}
           {plant.watering === "Average" && <FontAwesomeIcon icon={faDroplet} />}{" "}
           {plant.watering === "Frequent" && (
             <FontAwesomeIcon icon={faDroplet} />

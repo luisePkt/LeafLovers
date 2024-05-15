@@ -19,7 +19,7 @@ const HomePage = () => {
       <h1>LeafLovers</h1>
       <QuizStart />
 
-      <h2>Or directly find a plant in our Swap Exchange</h2>
+      <h2>Or adopt a new plant friend directly</h2>
       {randomIds && plants && (
         <section className={style.previewContainer}>
           <ResultPageCard plant={plants[randomIds[0] - 1]} />
@@ -28,7 +28,9 @@ const HomePage = () => {
           <ResultPageCard plant={plants[randomIds[2] - 1]} />
         </section>
       )}
-      <button onClick={() => navigate("/swap")}>Go to Swap Exchange</button>
+      <button onClick={() => navigate("/swap")}>
+        See more adoptable plants
+      </button>
     </div>
   );
 };

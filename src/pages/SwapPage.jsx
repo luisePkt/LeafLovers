@@ -49,7 +49,7 @@ const SwapPage = () => {
 
   return (
     <div className={style.main}>
-      <h2>Find yourself a new plant-based friend in our Swap Exchange!</h2>
+      <h2>Adopt your new plant-based friend!</h2>
 
       <div className={style.filterContainer}>
         <div>
