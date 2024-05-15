@@ -8,6 +8,7 @@ import SwapPage from "../pages/SwapPage";
 import PlantsProvider from "./PlantsProvider";
 import SinglePlantPage from "../pages/SinglePlantPage";
 import FavoritesPage from "../pages/FavoritesPage";
+import LegalNotice from "../pages/LegalNotice";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -36,6 +37,7 @@ const Router = () => {
           element: <SinglePlantPage />,
         },
         { path: "/favorites", element: <FavoritesPage /> },
+        { path: "/legal", element: <LegalNotice /> },
         {
           path: "*",
           element: <ErrorPage />,

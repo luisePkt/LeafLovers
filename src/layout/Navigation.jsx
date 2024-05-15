@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import HomePage from "../pages/HomePage";
 import MatchingPage from "../pages/MatchingPage";
 import SwapPage from "../pages/SwapPage";
 import { Link, NavLink } from "react-router-dom";
@@ -9,6 +8,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logo_klein_farbig.svg";
 import { useRef } from "react";
 import FavoritesPage from "../pages/FavoritesPage";
+import LegalNotice from "../pages/LegalNotice";
 
 const Navigation = () => {
   // show and hide navBar:
@@ -28,8 +28,9 @@ const Navigation = () => {
       to: "/matching",
       element: <MatchingPage />,
     },
-    { id: 2, name: "swap", to: "/swap", element: <SwapPage /> },
+    { id: 2, name: "adopt", to: "/swap", element: <SwapPage /> },
     { id: 3, name: "favorites", to: "/favorites", element: <FavoritesPage /> },
+    { id: 4, name: "legal", to: "/legal", element: <LegalNotice /> },
   ];
 
   // show and hide navMenu with click on navBar:

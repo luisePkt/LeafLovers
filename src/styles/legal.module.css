@@ -7,13 +7,14 @@
   margin: 120px 1em 1em 1em;
 }
 
-button.homeBtn {
-  width: clamp(300px, 50%, 700px);
+.wrapper {
+  width: clamp(300px, 80%, 800px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.previewContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.wrapper > * {
+  margin: 1em;
 }
