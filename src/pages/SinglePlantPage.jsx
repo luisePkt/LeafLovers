@@ -5,6 +5,9 @@ import style from "../styles/singlePlant.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ErrorPage from "./ErrorPage";
 import Contact from "../components/Contact";
+import AnimatedRight from "../components/AnimatedRight";
+import AnimatedLeft from "../components/AnimatedLeft";
+
 import {
   faLocationDot,
   faCircleArrowRight,
@@ -34,6 +37,10 @@ const SinglePlantPage = () => {
     setCurrentIndex,
     navigateBack,
   } = usePlantsContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     setCurrentPlant(plants.filter((plant) => plant.id.toString() === id)[0]);
@@ -93,15 +100,17 @@ const SinglePlantPage = () => {
               onClick={goToPrev}
             />
             <div className={style.card}>
-              <FontAwesomeIcon
-                icon={
-                  favorites.includes(currentPlant)
-                    ? faSolidHeart
-                    : faRegularHeart
-                }
-                className={style.heart}
-                onClick={toggleFavorites}
-              />
+              <AnimatedRight>
+                <FontAwesomeIcon
+                  icon={
+                    favorites.includes(currentPlant)
+                      ? faSolidHeart
+                      : faRegularHeart
+                  }
+                  className={style.heart}
+                  onClick={toggleFavorites}
+                />
+              </AnimatedRight>
               <p className={style.favInstruction}>
                 {favorites.includes(currentPlant)
                   ? "Remove from favorites"
@@ -183,7 +192,9 @@ const SinglePlantPage = () => {
                 </div>
               )}
               {!showContact && !showThankyou && (
-                <button onClick={toggleContact}>Get in touch</button>
+                <AnimatedLeft>
+                  <button onClick={toggleContact}>Get in touch</button>
+                </AnimatedLeft>
               )}
               {showContact && (
                 <Contact
@@ -202,25 +213,28 @@ const SinglePlantPage = () => {
               onClick={goToNext}
             />
           </div>
-
-          <div className={style.buttonSection}>
-            {favorites.includes(currentPlant) &&
-              navigateBack !== "/favorites" && (
-                <button onClick={() => navigate("/favorites")}>
-                  My favorites
+          <AnimatedRight>
+            <div className={style.buttonSection}>
+              {favorites.includes(currentPlant) &&
+                navigateBack !== "/favorites" && (
+                  <button onClick={() => navigate("/favorites")}>
+                    My favorites
+                  </button>
+                )}
+              {navigateBack !== "/adopt" && (
+                <button onClick={() => navigate("/adopt")}>
+                  Go to Gallery
                 </button>
               )}
-            {navigateBack !== "/adopt" && (
-              <button onClick={() => navigate("/adopt")}>Go to Gallery</button>
-            )}
-            <button
-              onClick={() => {
-                navigate(navigateBack);
-              }}
-            >
-              Go back
-            </button>
-          </div>
+              <button
+                onClick={() => {
+                  navigate(navigateBack);
+                }}
+              >
+                Go back
+              </button>
+            </div>
+          </AnimatedRight>
         </div>
       )}
     </div>
