@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import style from "../styles/legal.module.css";
+import AnimatedLeft from "../components/AnimatedLeft";
 
 const LegalNotice = () => {
   const navigate = useNavigate();
@@ -64,7 +65,9 @@ const LegalNotice = () => {
           used to identify individuals. If you have any questions regarding our
           data practices, please feel free to contact us.
         </p>
-        <button onClick={() => navigate(-1)}>Go back</button>
+        <AnimatedLeft>
+          <button onClick={() => navigate(-1)}>Go back</button>
+        </AnimatedLeft>
       </div>
     </div>
   );

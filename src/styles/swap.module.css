@@ -144,10 +144,6 @@ li.cardsLi {
   display: none;
 }
 
-.heart:hover ~ .favInstruction {
-  display: block;
-}
-
 .img,
 .imgReplacement {
   width: 200px;
@@ -170,5 +166,8 @@ li.cardsLi {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .heart:hover ~ .favInstruction {
+    display: block;
   }
 }

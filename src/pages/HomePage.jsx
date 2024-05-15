@@ -4,6 +4,7 @@ import style from "../styles/home.module.css";
 import ResultPageCard from "../components/ResultPageCard";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import { useEffect } from "react";
+import AnimatedLeft from "../components/AnimatedLeft";
 
 const HomePage = () => {
   const { plants, randomIds, setNavigateBack } = usePlantsContext();
@@ -28,9 +29,9 @@ const HomePage = () => {
           <ResultPageCard plant={plants[randomIds[2] - 1]} />
         </section>
       )}
-      <button onClick={() => navigate("/adopt")}>
-        See more adoptable plants
-      </button>
+      <AnimatedLeft>
+        <button onClick={() => navigate("/adopt")}>Discover more</button>
+      </AnimatedLeft>
     </div>
   );
 };

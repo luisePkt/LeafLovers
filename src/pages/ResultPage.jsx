@@ -3,6 +3,7 @@ import style from "../styles/result.module.css";
 import { useEffect, useState } from "react";
 import ResultPageCard from "../components/ResultPageCard";
 import { useNavigate } from "react-router-dom";
+import AnimatedLeft from "../components/AnimatedLeft";
 
 const ResultPage = () => {
   const { resultMatching, setResultMatching, plants } = usePlantsContext();
@@ -80,7 +81,7 @@ const ResultPage = () => {
 
   return (
     <div className={style.main}>
-      <h2>One of these three could become your new plant friend:</h2>
+      <h2>One of these could become your new plant friend:</h2>
       <div className={style.container}>
         {randomPlants.length > 0 && (
           <ul className={style.cardsContainer}>
@@ -91,11 +92,15 @@ const ResultPage = () => {
         )}
 
         {!randomPlants.length > 0 ? (
-          <button onClick={goToMatching}>match again</button>
+          <AnimatedLeft>
+            <button onClick={goToMatching}>match again</button>{" "}
+          </AnimatedLeft>
         ) : (
-          <button onClick={handleNewRandomPlant}>
-            finde me another plant friend
-          </button>
+          <AnimatedLeft>
+            <button onClick={handleNewRandomPlant}>
+              find me another plant friend
+            </button>
+          </AnimatedLeft>
         )}
       </div>
     </div>

@@ -7,10 +7,6 @@
   margin: 120px 1em 1em 1em;
 }
 
-button.homeBtn {
-  width: clamp(300px, 50%, 700px);
-}
-
 .previewContainer {
   display: flex;
   flex-wrap: wrap;
