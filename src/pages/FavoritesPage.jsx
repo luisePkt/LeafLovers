@@ -43,7 +43,7 @@ const FavoritesPage = () => {
               navigate("/adopt");
             }}
           >
-            Discover more
+            Discover new plants
           </button>
           <button
             onClick={() => {

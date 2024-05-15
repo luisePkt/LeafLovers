@@ -100,17 +100,15 @@ const SinglePlantPage = () => {
               onClick={goToPrev}
             />
             <div className={style.card}>
-              <AnimatedRight>
-                <FontAwesomeIcon
-                  icon={
-                    favorites.includes(currentPlant)
-                      ? faSolidHeart
-                      : faRegularHeart
-                  }
-                  className={style.heart}
-                  onClick={toggleFavorites}
-                />
-              </AnimatedRight>
+              <FontAwesomeIcon
+                icon={
+                  favorites.includes(currentPlant)
+                    ? faSolidHeart
+                    : faRegularHeart
+                }
+                className={style.heart}
+                onClick={toggleFavorites}
+              />
               <p className={style.favInstruction}>
                 {favorites.includes(currentPlant)
                   ? "Remove from favorites"
@@ -213,28 +211,25 @@ const SinglePlantPage = () => {
               onClick={goToNext}
             />
           </div>
-          <AnimatedRight>
-            <div className={style.buttonSection}>
-              {favorites.includes(currentPlant) &&
-                navigateBack !== "/favorites" && (
-                  <button onClick={() => navigate("/favorites")}>
-                    My favorites
-                  </button>
-                )}
-              {navigateBack !== "/adopt" && (
-                <button onClick={() => navigate("/adopt")}>
-                  Go to Gallery
+
+          <div className={style.buttonSection}>
+            {favorites.includes(currentPlant) &&
+              navigateBack !== "/favorites" && (
+                <button onClick={() => navigate("/favorites")}>
+                  My favorites
                 </button>
               )}
-              <button
-                onClick={() => {
-                  navigate(navigateBack);
-                }}
-              >
-                Go back
-              </button>
-            </div>
-          </AnimatedRight>
+            {navigateBack !== "/adopt" && (
+              <button onClick={() => navigate("/adopt")}>Go to Gallery</button>
+            )}
+            <button
+              onClick={() => {
+                navigate(navigateBack);
+              }}
+            >
+              Go back
+            </button>
+          </div>
         </div>
       )}
     </div>
