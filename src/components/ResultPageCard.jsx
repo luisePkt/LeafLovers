@@ -3,6 +3,8 @@ import style from "../styles/result.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDroplet,
+  faSkullCrossbones,
+  faUtensils,
   faCloud,
   faSun,
   faCloudSun,
@@ -11,7 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
 
-const ResultPageCard = ({ plant}) => {
+const ResultPageCard = ({ plant }) => {
   const { setNavigateBack } = usePlantsContext();
   const navigate = useNavigate();
 
@@ -27,20 +29,23 @@ const ResultPageCard = ({ plant}) => {
 
   return plant ? (
     <div className={style.card}>
-      <h3>{plant.common_name}</h3>
+      <h3 className={style.headline}>{plant.common_name}</h3>
       {plant.default_image ? (
-        <img
-          className={style.img}
-          src={plant.default_image.small_url || plant.default_original_url}
-          alt="plant image"
-        />
+        <div className={style.img}>
+          {" "}
+          <img
+            className={style.img}
+            src={plant.default_image.small_url || plant.default_original_url}
+            alt="plant image"
+          />{" "}
+        </div>
       ) : (
         <div className={style.imgReplacement}>
           <p>No image available</p>
         </div>
       )}
       <div className={style.infos}>
-        <h5>This plant needs:</h5>
+        <h5>This plant needs: </h5>
         <p>
           Watering:
           {/* {plant.watering} watering */} <FontAwesomeIcon icon={faDroplet} />{" "}
@@ -53,8 +58,7 @@ const ResultPageCard = ({ plant}) => {
           )}
         </p>
         <p>
-          Sunlight:
-          {/* {plant.sunlight.join(", ")} */}{" "}
+          Sunlight:{" "}
           {plant.sunlight.includes("full shade") && (
             <FontAwesomeIcon icon={faCloud} />
           )}{" "}
@@ -67,6 +71,20 @@ const ResultPageCard = ({ plant}) => {
           {plant.sunlight.join("").includes("part") && (
             <FontAwesomeIcon icon={faCloudSun} />
           )}
+        </p>
+        <p>
+          Poisonous:{" "}
+          {plant.poisonous.toString().includes(true) && (
+            <FontAwesomeIcon icon={faSkullCrossbones} />
+          )}
+          {plant.poisonous.toString().includes(false) && "not"}
+        </p>
+        <p>
+          Edible:{" "}
+          {plant.poisonous.toString().includes(true) && (
+            <FontAwesomeIcon icon={faUtensils} />
+          )}
+          {plant.poisonous.toString().includes(false) && "not"}
         </p>
       </div>
       <button onClick={goToPlant}>adopt me</button>

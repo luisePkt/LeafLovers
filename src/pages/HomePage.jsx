@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <div className={style.main}>
-      <h1>Welcome</h1>
+      <h1>LeafLovers</h1>
       <QuizStart />
 
       <h2>Or directly find a plant in our Swap Exchange</h2>
