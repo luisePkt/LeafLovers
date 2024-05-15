@@ -44,10 +44,6 @@ const Router = () => {
         },
       ],
     },
-    {
-      path: "*",
-      element: <ErrorPage />,
-    },
   ]);
 
   return (
