@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "../styles/result.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,17 +9,23 @@ import {
   faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { usePlantsContext } from "../utils/PlantsProvider";
 
-const ResultPageCard = ({ plant }) => {
-  
+const ResultPageCard = ({ plant}) => {
+  const { setNavigateBack } = usePlantsContext();
   const navigate = useNavigate();
 
+  // go to SinglePlantCard
   const goToPlant = () => {
     navigate(`/plant/${plant.id}`);
   };
 
-  return plant ? (
+  // go back to results
+  useEffect(() => {
+    setNavigateBack ? setNavigateBack("/result") : null;
+  }, [setNavigateBack]);
 
+  return plant ? (
     <div className={style.card}>
       <h3>{plant.common_name}</h3>
       {plant.default_image ? (
