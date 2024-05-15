@@ -80,7 +80,7 @@ const ResultPage = () => {
 
   return (
     <div className={style.main}>
-      <h2>One of these three could become your new plant friend:</h2>
+      <h2>One of these could become your new plant friend:</h2>
       <div className={style.container}>
         {randomPlants.length > 0 && (
           <ul className={style.cardsContainer}>
