@@ -14,6 +14,8 @@ import {
   faSun,
   faCloudSun,
   faHeart as faSolidHeart,
+  faSkullCrossbones,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -114,10 +116,9 @@ const SinglePlantPage = () => {
                   <p>{currentPlant.scientific_name.join(", ")}</p>
                 </div>
                 <div className={style.infos}>
-                  <h5>This plant needs:</h5>
+                  <h5>Care-taking details: </h5>
                   <p>
-                    Watering: {currentPlant.watering} watering{" "}
-                    <FontAwesomeIcon icon={faDroplet} />{" "}
+                    Watering: <FontAwesomeIcon icon={faDroplet} />{" "}
                     {currentPlant.watering === "Average" && (
                       <FontAwesomeIcon icon={faDroplet} />
                     )}{" "}
@@ -129,7 +130,7 @@ const SinglePlantPage = () => {
                     )}
                   </p>
                   <p>
-                    Sunlight: {currentPlant.sunlight.join(", ")}{" "}
+                    Sunlight:{" "}
                     {currentPlant.sunlight.includes("full shade") && (
                       <FontAwesomeIcon icon={faCloud} />
                     )}{" "}
@@ -142,6 +143,20 @@ const SinglePlantPage = () => {
                     {currentPlant.sunlight.join("").includes("part") && (
                       <FontAwesomeIcon icon={faCloudSun} />
                     )}
+                  </p>
+                  <p>
+                    Poisonous:{" "}
+                    {currentPlant.poisonous.toString().includes(true) && (
+                      <FontAwesomeIcon icon={faSkullCrossbones} />
+                    )}
+                    {currentPlant.poisonous.toString().includes(false) && "no"}
+                  </p>
+                  <p>
+                    Edible:{" "}
+                    {currentPlant.poisonous.toString().includes(true) && (
+                      <FontAwesomeIcon icon={faUtensils} />
+                    )}
+                    {currentPlant.poisonous.toString().includes(false) && "no"}
                   </p>
                 </div>
               </div>
@@ -195,6 +210,9 @@ const SinglePlantPage = () => {
                   My favorites
                 </button>
               )}
+            {navigateBack !== "/swap" && (
+              <button onClick={() => navigate("/swap")}>Go to Gallery</button>
+            )}
             <button
               onClick={() => {
                 navigate(navigateBack);
