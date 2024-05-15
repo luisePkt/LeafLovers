@@ -28,7 +28,7 @@ const Navigation = () => {
       to: "/matching",
       element: <MatchingPage />,
     },
-    { id: 2, name: "adopt", to: "/swap", element: <SwapPage /> },
+    { id: 2, name: "adopt", to: "/adopt", element: <SwapPage /> },
     { id: 3, name: "favorites", to: "/favorites", element: <FavoritesPage /> },
     { id: 4, name: "legal", to: "/legal", element: <LegalNotice /> },
   ];

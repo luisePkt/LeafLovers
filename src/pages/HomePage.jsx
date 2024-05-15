@@ -28,7 +28,7 @@ const HomePage = () => {
           <ResultPageCard plant={plants[randomIds[2] - 1]} />
         </section>
       )}
-      <button onClick={() => navigate("/swap")}>
+      <button onClick={() => navigate("/adopt")}>
         See more adoptable plants
       </button>
     </div>
