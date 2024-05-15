@@ -37,6 +37,8 @@ const PlantsProvider = ({ children }) => {
   const [currentPlant, setCurrentPlant] = useState();
   const [currentIndex, setCurrentIndex] = useState();
   const [navigateBack, setNavigateBack] = useState("/swap");
+  // const [navigateBackToResult, setNavigateBackToResult] = useState("/result");
+
   const [randomIds, setRandomIds] = useState([]);
 
   const [images, setImages] = useState([]);
