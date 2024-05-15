@@ -210,8 +210,8 @@ const SinglePlantPage = () => {
                   My favorites
                 </button>
               )}
-            {navigateBack !== "/swap" && (
-              <button onClick={() => navigate("/swap")}>Go to Gallery</button>
+            {navigateBack !== "/adopt" && (
+              <button onClick={() => navigate("/adopt")}>Go to Gallery</button>
             )}
             <button
               onClick={() => {

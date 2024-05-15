@@ -38,7 +38,7 @@ const FavoritesPage = () => {
         <button
           onClick={() => {
             window.scrollTo(0, 0);
-            navigate("/swap");
+            navigate("/adopt");
           }}
         >
           Discover more plants

@@ -44,7 +44,7 @@ const SwapPage = () => {
   }, []);
 
   useEffect(() => {
-    setNavigateBack ? setNavigateBack("/swap") : null;
+    setNavigateBack ? setNavigateBack("/adopt") : null;
   }, [setNavigateBack]);
 
   return (

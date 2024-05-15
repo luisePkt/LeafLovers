@@ -29,7 +29,7 @@ const Router = () => {
           element: <ResultPage />,
         },
         {
-          path: "/swap",
+          path: "/adopt",
           element: <SwapPage />,
         },
         {
