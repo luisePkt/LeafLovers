@@ -6,8 +6,7 @@ import { useEffect } from "react";
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  const { plants, favorites, setFavorites, setNavigateBack } =
-    usePlantsContext();
+  const { favorites, setNavigateBack } = usePlantsContext();
 
   useEffect(() => {
     setNavigateBack ? setNavigateBack("/favorites") : null;
@@ -35,14 +34,23 @@ const FavoritesPage = () => {
           </ul>
         )}{" "}
       </div>
-      <button
-        onClick={() => {
-          window.scrollTo(0, 0);
-          navigate("/swap");
-        }}
-      >
-        Discover more plants
-      </button>
+      <section className={style.btnSection}>
+        <button
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/swap");
+          }}
+        >
+          Discover more plants
+        </button>
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Go back
+        </button>
+      </section>
     </div>
   );
 };
