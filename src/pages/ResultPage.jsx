@@ -6,7 +6,15 @@ import { useNavigate } from "react-router-dom";
 import AnimatedLeft from "../components/AnimatedLeft";
 
 const ResultPage = () => {
-  const { resultMatching, setResultMatching, plants } = usePlantsContext();
+  const {
+    resultMatching,
+    setResultMatching,
+    plants,
+    // navigateBackToResult,
+    // setNavigateBackToResult,
+    // idsResult,
+    // setIdsResult,
+  } = usePlantsContext();
   const [randomPlants, setRandomPlants] = useState([]);
   const [filteredPlants, setFilteredPlants] = useState([]);
   const navigate = useNavigate();
@@ -61,14 +69,19 @@ const ResultPage = () => {
   }, [plants]);
 
   const handleNewRandomPlant = () => {
-    const ar = [];
-    for (let i = 0; i < 3; i++) {
-      const plantsIndex = Math.floor(Math.random() * filteredPlants.length);
-      ar.push(plantsIndex);
+    // The Fisher Yates Method:
+    const copyFilteredPlants = [...filteredPlants];
+    // i ist quasi letzter index (element) des arrays und schleife läuft so lange, wie es elmente gibt
+    for (let i = copyFilteredPlants.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [copyFilteredPlants[i], copyFilteredPlants[j]] = [
+        copyFilteredPlants[j],
+        copyFilteredPlants[i],
+      ];
     }
-    setRandomPlants(() =>
-      filteredPlants.filter((x, index) => ar.includes(index))
-    );
+    const arrayIndices = copyFilteredPlants.slice(0, 3);
+
+    setRandomPlants(arrayIndices);
   };
 
   useEffect(() => {
@@ -78,6 +91,20 @@ const ResultPage = () => {
   const goToMatching = () => {
     navigate(`/matching`);
   };
+
+  // useEffect(() => {
+  //   setNavigateBackToResult ? setNavigateBackToResult("/result") : null;
+  // }, [setNavigateBackToResult]);
+
+  // useEffect(() => {
+  //   setIdsResult([
+  // randomPlants[0].id.toString(),
+  // randomPlants[1].id.toString(),
+  // randomPlants[2].id.toString(),
+  //   ]);
+  // }, [randomPlants]);
+  // console.log("idsResult", idsResult);
+  // console.log("randomPlants", randomPlants[0].id.toString());
 
   return (
     <div className={style.main}>

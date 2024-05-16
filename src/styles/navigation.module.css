@@ -16,10 +16,40 @@ nav {
   align-items: center;
 }
 
-.logo {
+.logoBox {
   font-family: "Bubblegum Sans", display;
   font-size: 40px;
   color: antiquewhite;
+  width: 100px;
+}
+
+.logoIcon {
+  width: 70px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoIcon:hover {
+  animation: vibrate 0.5s, linear infinite;
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translate(-2%, -2%);
+  }
+  25% {
+    transform: translate(2%, -2%);
+  }
+  50% {
+    transform: translate(-2%, 2%);
+  }
+  75% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(-2%, -2%);
+  }
 }
 
 .navElements {
