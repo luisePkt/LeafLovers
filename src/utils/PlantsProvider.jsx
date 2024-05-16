@@ -38,6 +38,8 @@ const PlantsProvider = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState();
   const [navigateBack, setNavigateBack] = useState("/swap");
   const [randomIds, setRandomIds] = useState([]);
+  // const [navigateBackToResult, setNavigateBackToResult] = useState("/result");
+  // const [idsResult, setIdsResult] = useState([]);
 
   const [images, setImages] = useState([]);
 
@@ -140,6 +142,10 @@ const PlantsProvider = ({ children }) => {
         setNavigateBack,
         randomIds,
         setRandomIds,
+        // navigateBackToResult,
+        // setNavigateBackToResult,
+        // idsResult,
+        // setIdsResult,
       }}
     >
       {children}

@@ -4,6 +4,9 @@ import style from "../styles/swap.module.css";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import locations from "../utils/locations.js";
 import { useEffect } from "react";
+import AnimatedLeft from "../components/AnimatedLeft.jsx";
+import AnimatedRight from "../components/AnimatedRight.jsx";
+
 
 const SwapPage = () => {
   const {
@@ -136,25 +139,31 @@ const SwapPage = () => {
 
       <div className={style.buttonContainer}>
         {favorites && favorites.length > 0 && (
-          <button
-            onClick={() => {
-              window.scrollTo(0, 0);
-              navigate("/favorites/#");
-            }}
-          >
-            My favorites
-          </button>
+          <AnimatedRight>
+            {" "}
+            <button
+              style={{ scrollBehavior: "auto" }}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/favorites/#");
+              }}
+            >
+              My favorites
+            </button>
+          </AnimatedRight>
         )}
-        <button
-          onClick={showMore}
-          disabled={
-            plantSelection
-              ? count >= plantSelection.length
-              : count >= plants.length
-          }
-        >
-          Show more
-        </button>
+        <AnimatedLeft>
+          <button
+            onClick={showMore}
+            disabled={
+              plantSelection
+                ? count >= plantSelection.length
+                : count >= plants.length
+            }
+          >
+            Show more
+          </button>
+        </AnimatedLeft>
       </div>
     </div>
   );

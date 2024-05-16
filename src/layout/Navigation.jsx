@@ -68,10 +68,9 @@ const Navigation = () => {
   return (
     <nav>
       {/* logo */}
-      <div className={style.logo}>
-        {/* <p>FL</p> */}
+      <div className={style.logoBox}>
         <Link to="/">
-          <img src={logo} alt="Logo LeafLovers" style={{ width: "70px" }} />
+          <img src={logo} alt="Logo LeafLovers" className={style.logoIcon}  />
         </Link>
       </div>
 
@@ -83,7 +82,6 @@ const Navigation = () => {
       {/* nav */}
       <div
         ref={navMenuRef}
-        // onBlur={closeNavOnClickOutside}
         onClick={closeNavOnClickOutside}
         className={`${style.navElements} ${showBars && style.active}`}
       >

@@ -3,6 +3,7 @@ import style from "../styles/favorites.module.css";
 import SinglePlant from "../components/SinglePlantCard";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AnimatedLeft from "../components/AnimatedLeft";
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
@@ -34,23 +35,25 @@ const FavoritesPage = () => {
           </ul>
         )}{" "}
       </div>
-      <section className={style.btnSection}>
-        <button
-          onClick={() => {
-            window.scrollTo(0, 0);
-            navigate("/adopt");
-          }}
-        >
-          Discover more plants
-        </button>
-        <button
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Go back
-        </button>
-      </section>
+      <AnimatedLeft>
+        <section className={style.btnSection}>
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+              navigate("/adopt");
+            }}
+          >
+            Discover new plants
+          </button>
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Go back
+          </button>
+        </section>
+      </AnimatedLeft>
     </div>
   );
 };

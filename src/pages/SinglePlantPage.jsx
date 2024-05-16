@@ -5,6 +5,9 @@ import style from "../styles/singlePlant.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ErrorPage from "./ErrorPage";
 import Contact from "../components/Contact";
+import AnimatedRight from "../components/AnimatedRight";
+import AnimatedLeft from "../components/AnimatedLeft";
+
 import {
   faLocationDot,
   faCircleArrowRight,
@@ -34,6 +37,10 @@ const SinglePlantPage = () => {
     setCurrentIndex,
     navigateBack,
   } = usePlantsContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     setCurrentPlant(plants.filter((plant) => plant.id.toString() === id)[0]);
@@ -183,7 +190,9 @@ const SinglePlantPage = () => {
                 </div>
               )}
               {!showContact && !showThankyou && (
-                <button onClick={toggleContact}>Get in touch</button>
+                <AnimatedLeft>
+                  <button onClick={toggleContact}>Get in touch</button>
+                </AnimatedLeft>
               )}
               {showContact && (
                 <Contact

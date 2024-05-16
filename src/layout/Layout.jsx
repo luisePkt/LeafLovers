@@ -6,6 +6,10 @@ const Layout = () => {
   // scroll button for all pages:
   const [showScrollButton, setShowScrollButton] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const handleScrollButton = () => {
       window.pageYOffset > 300
@@ -22,11 +26,12 @@ const Layout = () => {
   return (
     <div>
       {showScrollButton && (
-        <a href="#">
-          <button style={{ position: "fixed", right: 0, bottom: 0, zIndex: 5 }}>
-            Back to top
-          </button>
-        </a>
+        <button
+          onClick={scrollToTop}
+          style={{ position: "fixed", right: 0, bottom: 0, zIndex: 5 }}
+        >
+          Back to top
+        </button>
       )}
       <Header />
       <Outlet />
