@@ -3,9 +3,10 @@ import SwapGallery from "../components/SwapGallery";
 import style from "../styles/swap.module.css";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import locations from "../utils/locations.js";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import AnimatedLeft from "../components/AnimatedLeft.jsx";
 import AnimatedRight from "../components/AnimatedRight.jsx";
+
 
 const SwapPage = () => {
   const {
@@ -26,7 +27,6 @@ const SwapPage = () => {
   } = usePlantsContext();
 
   const navigate = useNavigate();
-  const inputRef = useRef();
 
   const showMore = () => {
     if (count < plants.length) {
@@ -40,10 +40,6 @@ const SwapPage = () => {
     setWateringFilter("all");
     setSunlightFilter("all");
   };
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   useEffect(() => {
     setNavigateBack ? setNavigateBack("/adopt") : null;
@@ -60,7 +56,6 @@ const SwapPage = () => {
             className={style.searchInput}
             type="text"
             value={searchInput}
-            ref={inputRef}
             placeholder="Search for plant"
             onChange={(e) => {
               setSearchInput(e.target.value);
