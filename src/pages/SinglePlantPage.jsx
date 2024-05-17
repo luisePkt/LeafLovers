@@ -5,7 +5,6 @@ import style from "../styles/singlePlant.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ErrorPage from "./ErrorPage";
 import Contact from "../components/Contact";
-import AnimatedRight from "../components/AnimatedRight";
 import AnimatedLeft from "../components/AnimatedLeft";
 
 import {
@@ -36,7 +35,10 @@ const SinglePlantPage = () => {
     currentIndex,
     setCurrentIndex,
     navigateBack,
+    consent,
   } = usePlantsContext();
+
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,15 +80,26 @@ const SinglePlantPage = () => {
         <div key={currentPlant.id} className={style.container}>
           {currentPlant.default_image &&
           (currentPlant.default_image.small_url ||
-            currentPlant.default_image.original_url) ? (
-            <img
-              className={style.img}
-              src={
-                currentPlant.default_image.original_url ||
-                currentPlant.default_image.small_url
-              }
-              alt={currentPlant.common_name}
-            />
+            currentPlant.default_image.original_url) &&
+          consent ? (
+            <div className={style.imgContainer}>
+              <img
+                className={style.img}
+                src={
+                  currentPlant.default_image.original_url ||
+                  currentPlant.default_image.small_url
+                }
+                alt={`${currentPlant.common_name}, image source: pixabay.com`}
+              />
+              <p className={style.imageSource}>
+                Source:{" "}
+                <a href="https://pixabay.com" target="_blank">
+                  pixabay
+                </a>
+              </p>
+            </div>
+          ) : !consent ? (
+            <div className={style.imgReplacement}>Image requires cookies</div>
           ) : (
             <div className={style.imgReplacement}>No image available</div>
           )}

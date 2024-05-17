@@ -14,8 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
 
 const ResultPageCard = ({ plant }) => {
-  const { setNavigateBack } = usePlantsContext();
+  const { setNavigateBack, consent } = usePlantsContext();
   const navigate = useNavigate();
+
+  
 
   // go to SinglePlantCard
   const goToPlant = () => {
@@ -30,15 +32,23 @@ const ResultPageCard = ({ plant }) => {
   return plant ? (
     <div className={style.card}>
       <h3 className={style.headline}>{plant.common_name}</h3>
-      {plant.default_image ? (
-        <div className={style.img}>
+      {plant.default_image && consent ? (
+        <div className={style.imgContainer}>
           {" "}
           <img
             className={style.img}
             src={plant.default_image.small_url || plant.default_original_url}
-            alt="plant image"
+            alt={`${plant.common_name}, image source: pixabay.com`}
           />{" "}
+          <p className={style.imageSource}>
+            Source:{" "}
+            <a href="https://pixabay.com" target="_blank">
+              pixabay
+            </a>
+          </p>
         </div>
+      ) : !consent ? (
+        <div className={style.imgReplacement}>Image requires cookies</div>
       ) : (
         <div className={style.imgReplacement}>
           <p>No image available</p>
