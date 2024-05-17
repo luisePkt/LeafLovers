@@ -157,6 +157,29 @@ li.cardsLi {
   font-style: italic;
 }
 
+.imgContainer {
+  position: relative;
+  border-radius: 5%;
+  overflow: hidden;
+}
+
+p.imageSource {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.6rem;
+  background-color: rgb(71, 71, 71);
+  opacity: 0.6;
+  color: white;
+  text-align: right;
+  padding: 0 1em 0.2em 0.5em;
+}
+
+p.imageSource a {
+  color: white;
+  text-decoration: none;
+}
+
 .buttonContainer {
   margin-bottom: 50px;
 }

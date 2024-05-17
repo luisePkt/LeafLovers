@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import CookieBar from "../utils/CookieBar";
 
 const Layout = () => {
   // scroll button for all pages:
@@ -33,6 +34,7 @@ const Layout = () => {
           Back to top
         </button>
       )}
+      <CookieBar />
       <Header />
       <Outlet />
     </div>

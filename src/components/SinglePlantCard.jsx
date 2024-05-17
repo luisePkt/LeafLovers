@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
 
 const SinglePlant = ({ plant }) => {
-  const { favorites, setFavorites } = usePlantsContext();
+  const { favorites, setFavorites, consent } = usePlantsContext();
 
   const toggleFavorites = (e) => {
     e.preventDefault();
@@ -60,16 +60,24 @@ const SinglePlant = ({ plant }) => {
         {plant.default_image &&
         (plant.default_image.thumbnail ||
           plant.default_image.small_url ||
-          plant.default_image.original_url) ? (
-          <img
-            className={style.img}
-            src={
-              plant.default_image.thumbnail ||
-              plant.default_image.small_url ||
-              plant.default_image.original_url
-            }
-            alt={plant.common_name}
-          />
+          plant.default_image.original_url) &&
+        consent ? (
+          <div className={style.imgContainer}>
+            <img
+              className={style.img}
+              src={
+                plant.default_image.thumbnail ||
+                plant.default_image.small_url ||
+                plant.default_image.original_url
+              }
+              alt={`${plant.common_name}, image source: pixabay.com`}
+            />
+            <p className={style.imageSource}>Source: pixabay</p>
+          </div>
+        ) : !consent ? (
+          <div className={style.imgReplacement}>
+            Image requires cookies
+          </div>
         ) : (
           <div className={style.imgReplacement}>No image available</div>
         )}

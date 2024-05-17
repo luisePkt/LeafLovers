@@ -8,6 +8,7 @@ import {
 import { fakePlants } from "./FakeDataFromKI";
 import locations from "./locations";
 import firstNames from "./firstNames";
+import Cookies from "js-cookie";
 
 const initialState = 10;
 const reducer = (state, action) => {
@@ -38,6 +39,7 @@ const PlantsProvider = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState();
   const [navigateBack, setNavigateBack] = useState("/swap");
   const [randomIds, setRandomIds] = useState([]);
+  const [consent, setConsent] = useState(Cookies.get("cookie_consent"));
   // const [navigateBackToResult, setNavigateBackToResult] = useState("/result");
   // const [idsResult, setIdsResult] = useState([]);
 
@@ -142,6 +144,8 @@ const PlantsProvider = ({ children }) => {
         setNavigateBack,
         randomIds,
         setRandomIds,
+        consent,
+        setConsent,
         // navigateBackToResult,
         // setNavigateBackToResult,
         // idsResult,
