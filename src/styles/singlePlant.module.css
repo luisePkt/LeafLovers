@@ -65,17 +65,47 @@
   color: rgb(71, 71, 71);
 }
 
-.heart {
+/* .heart {
   position: absolute;
   right: 1em;
   top: 1em;
   font-size: 1.5em;
   cursor: pointer;
   color: rgb(71, 71, 71);
+  width: 24px;
+} */
+
+/* .heart:hover {
+  color: var(--bgSecondary);
+} */
+
+/* .heart:hover ~ .favInstruction {
+  display: block;
+} */
+
+.svg {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: rgb(71, 71, 71);
+  width: 24px;
 }
 
-.heart:hover {
+.svg:hover {
   color: var(--bgSecondary);
+}
+
+.svg:hover ~ .favInstruction {
+  display: block;
+}
+
+.locationDot {
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  top: 2px;
 }
 
 .favInstruction {
@@ -88,23 +118,21 @@
   font-size: 0.8em;
 }
 
-.heart:hover ~ .favInstruction {
-  display: block;
-}
-
 .infos {
   margin: 1.5em 0;
 }
 
 .switch {
-  font-size: clamp(1.5em, 5vw, 2em);
+  /* font-size: clamp(1.5em, 5vw, 2em); */
   cursor: pointer;
   color: var(--bgSecondary);
+  width: clamp(1.5em, 5vw, 2em);
 }
 
 .switchDisabled {
-  font-size: clamp(1.5em, 5vw, 2em);
-  color: lightgray;
+  /* font-size: clamp(1.5em, 5vw, 2em); */
+  color: #d3d3d3;
+  width: clamp(1.5em, 5vw, 2em);
 }
 
 /* Contact form: */

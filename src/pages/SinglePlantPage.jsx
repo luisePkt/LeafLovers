@@ -2,25 +2,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { usePlantsContext } from "../utils/PlantsProvider";
 import style from "../styles/singlePlant.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ErrorPage from "./ErrorPage";
 import Contact from "../components/Contact";
 import AnimatedRight from "../components/AnimatedRight";
 import AnimatedLeft from "../components/AnimatedLeft";
-
-import {
-  faLocationDot,
-  faCircleArrowRight,
-  faCircleArrowLeft,
-  faDroplet,
-  faCloud,
-  faSun,
-  faCloudSun,
-  faHeart as faSolidHeart,
-  faSkullCrossbones,
-  faUtensils,
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
+// icons:
+import CircleArrowLeft from "../components/icons/CircleArrowLeft";
+import CircleArrowLeftDisabled from "../components/icons/CircleArrowLeftDisabled";
+import SolidHeart from "../components/icons/SolidHeart";
+import RegularHeart from "../components/icons/RegularHeart";
+import CircleArrowRightDisabled from "../components/icons/CircleArrowRightDisabled";
+import CircleArrowRight from "../components/icons/CircleArrowRight";
+import LocationDot from "../components/icons/LocationDot";
+import Droplet from "../components/icons/Droplet";
+import Cloud from "../components/icons/Cloud";
+import { Sun } from "../components/icons/Sun";
+import CloudSun from "../components/icons/CloudSun";
+import SkullCrossbones from "../components/icons/SkullCrossbones";
+import Utensils from "../components/icons/Utensils";
 
 const SinglePlantPage = () => {
   const navigate = useNavigate();
@@ -92,23 +91,17 @@ const SinglePlantPage = () => {
           )}
 
           <div className={style.middleSec}>
-            <FontAwesomeIcon
-              className={
-                currentIndex === 0 ? style.switchDisabled : style.switch
-              }
-              icon={faCircleArrowLeft}
-              onClick={goToPrev}
-            />
+            {currentIndex === 0 ? (
+              <CircleArrowLeftDisabled />
+            ) : (
+              <CircleArrowLeft onClick={goToPrev} />
+            )}
             <div className={style.card}>
-              <FontAwesomeIcon
-                icon={
-                  favorites.includes(currentPlant)
-                    ? faSolidHeart
-                    : faRegularHeart
-                }
-                className={style.heart}
-                onClick={toggleFavorites}
-              />
+              {favorites.includes(currentPlant) ? (
+                <SolidHeart onClick={toggleFavorites} />
+              ) : (
+                <RegularHeart onClick={toggleFavorites} />
+              )}
               <p className={style.favInstruction}>
                 {favorites.includes(currentPlant)
                   ? "Remove from favorites"
@@ -125,43 +118,31 @@ const SinglePlantPage = () => {
                 <div className={style.infos}>
                   <h5>Care-taking details: </h5>
                   <p>
-                    Watering: <FontAwesomeIcon icon={faDroplet} />{" "}
-                    {currentPlant.watering === "Average" && (
-                      <FontAwesomeIcon icon={faDroplet} />
-                    )}{" "}
-                    {currentPlant.watering === "Frequent" && (
-                      <FontAwesomeIcon icon={faDroplet} />
-                    )}{" "}
-                    {currentPlant.watering === "Frequent" && (
-                      <FontAwesomeIcon icon={faDroplet} />
-                    )}
+                    Watering: <Droplet />{" "}
+                    {currentPlant.watering === "Average" && <Droplet />}{" "}
+                    {currentPlant.watering === "Frequent" && <Droplet />}{" "}
+                    {currentPlant.watering === "Frequent" && <Droplet />}
                   </p>
                   <p>
                     Sunlight:{" "}
-                    {currentPlant.sunlight.includes("full shade") && (
-                      <FontAwesomeIcon icon={faCloud} />
-                    )}{" "}
-                    {currentPlant.sunlight.includes("deep shade") && (
-                      <FontAwesomeIcon icon={faCloud} />
-                    )}{" "}
-                    {currentPlant.sunlight.includes("full sun") && (
-                      <FontAwesomeIcon icon={faSun} />
-                    )}{" "}
+                    {currentPlant.sunlight.includes("full shade") && <Cloud />}{" "}
+                    {currentPlant.sunlight.includes("deep shade") && <Cloud />}{" "}
+                    {currentPlant.sunlight.includes("full sun") && <Sun />}{" "}
                     {currentPlant.sunlight.join("").includes("part") && (
-                      <FontAwesomeIcon icon={faCloudSun} />
+                      <CloudSun />
                     )}
                   </p>
                   <p>
                     Poisonous:{" "}
                     {currentPlant.poisonous.toString().includes(true) && (
-                      <FontAwesomeIcon icon={faSkullCrossbones} />
+                      <SkullCrossbones />
                     )}
                     {currentPlant.poisonous.toString().includes(false) && "no"}
                   </p>
                   <p>
                     Edible:{" "}
                     {currentPlant.poisonous.toString().includes(true) && (
-                      <FontAwesomeIcon icon={faUtensils} />
+                      <Utensils />
                     )}
                     {currentPlant.poisonous.toString().includes(false) && "no"}
                   </p>
@@ -173,8 +154,7 @@ const SinglePlantPage = () => {
                   <p className={style.location}></p>
                   {currentPlant.locations.map((x, index) => (
                     <p key={index}>
-                      <FontAwesomeIcon icon={faLocationDot} />{" "}
-                      {currentPlant.locations[index]}:{" "}
+                      <LocationDot /> {currentPlant.locations[index]}:{" "}
                       <em> {currentPlant.firstNames[index]}</em>
                     </p>
                   ))}
@@ -201,15 +181,12 @@ const SinglePlantPage = () => {
                 />
               )}
             </div>
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              className={
-                currentIndex === plants.length - 1
-                  ? style.switchDisabled
-                  : style.switch
-              }
-              onClick={goToNext}
-            />
+
+            {currentIndex === plants.length - 1 ? (
+              <CircleArrowRightDisabled />
+            ) : (
+              <CircleArrowRight onClick={goToNext} />
+            )}
           </div>
 
           <div className={style.buttonSection}>
