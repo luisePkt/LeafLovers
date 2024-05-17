@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import style from "../styles/result.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDroplet,
-  faSkullCrossbones,
-  faUtensils,
-  faCloud,
-  faSun,
-  faCloudSun,
-  faHeart as faSolidHeart,
-} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
+// icons:
+import Droplet from "./icons/Droplet";
+import { Sun } from "./icons/Sun";
+import Cloud from "./icons/Cloud";
+import CloudSun from "./icons/CloudSun";
+import SkullCrossbones from "./icons/SkullCrossbones";
+import Utensils from "./icons/Utensils";
 
 const ResultPageCard = ({ plant }) => {
   const { setNavigateBack, consent } = usePlantsContext();
@@ -55,44 +52,26 @@ const ResultPageCard = ({ plant }) => {
         </div>
       )}
       <div className={style.infos}>
-        <h5>This plant needs: </h5>
+        <h5>This plant needs:</h5>
+
         <p>
-          Watering: <FontAwesomeIcon icon={faDroplet} />{" "}
-          {plant.watering === "Average" && <FontAwesomeIcon icon={faDroplet} />}{" "}
-          {plant.watering === "Frequent" && (
-            <FontAwesomeIcon icon={faDroplet} />
-          )}{" "}
-          {plant.watering === "Frequent" && (
-            <FontAwesomeIcon icon={faDroplet} />
-          )}
+          Watering: <Droplet /> {plant.watering === "Average" && <Droplet />}{" "}
+          {plant.watering === "Frequent" && <Droplet />}{" "}
+          {plant.watering === "Frequent" && <Droplet />}
         </p>
         <p>
-          Sunlight:{" "}
-          {plant.sunlight.includes("full shade") && (
-            <FontAwesomeIcon icon={faCloud} />
-          )}{" "}
-          {plant.sunlight.includes("deep shade") && (
-            <FontAwesomeIcon icon={faCloud} />
-          )}{" "}
-          {plant.sunlight.includes("full sun") && (
-            <FontAwesomeIcon icon={faSun} />
-          )}{" "}
-          {plant.sunlight.join("").includes("part") && (
-            <FontAwesomeIcon icon={faCloudSun} />
-          )}
+          Sunlight: {plant.sunlight.includes("full shade") && <Cloud />}{" "}
+          {plant.sunlight.includes("deep shade") && <Cloud />}{" "}
+          {plant.sunlight.includes("full sun") && <Sun />}{" "}
+          {plant.sunlight.join("").includes("part") && <CloudSun />}
         </p>
         <p>
           Poisonous:{" "}
-          {plant.poisonous.toString().includes(true) && (
-            <FontAwesomeIcon icon={faSkullCrossbones} />
-          )}
+          {plant.poisonous.toString().includes(true) && <SkullCrossbones />}
           {plant.poisonous.toString().includes(false) && "not"}
         </p>
         <p>
-          Edible:{" "}
-          {plant.poisonous.toString().includes(true) && (
-            <FontAwesomeIcon icon={faUtensils} />
-          )}
+          Edible: {plant.poisonous.toString().includes(true) && <Utensils />}
           {plant.poisonous.toString().includes(false) && "not"}
         </p>
       </div>

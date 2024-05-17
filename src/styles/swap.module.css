@@ -127,7 +127,8 @@ li.cardsLi {
   position: absolute;
   right: clamp(1vw, 1%, 2vw);
   top: clamp(1vw, 1%, 2vw);
-  font-size: 1.1em;
+  /* font-size: 1.1em; */
+  width: 1.1em;
   cursor: pointer;
   color: rgb(71, 71, 71);
 }
@@ -136,12 +137,23 @@ li.cardsLi {
   color: var(--bgSecondary);
 }
 
+.heart:hover ~ .favInstruction {
+  display: block;
+}
+
 .favInstruction {
   position: absolute;
   top: clamp(1vw, 1%, 2vw);
   color: rgb(71, 71, 71);
   padding: 0.3em 0.8em;
   display: none;
+}
+
+.locationDot {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  top: 2px;
 }
 
 .img,

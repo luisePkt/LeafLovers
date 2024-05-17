@@ -1,12 +1,10 @@
 import style from "../styles/swap.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLocationDot,
-  faHeart as faSolidHeart,
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
+// icons:
+import LocationDot from "../components/icons/LocationDotSinglePlantCard";
+import SolidHeart from "../components/icons/SolidHeartSinglePlantCard";
+import RegularHeart from "../components/icons/RegularHeartSinglePlantCard";
 
 const SinglePlant = ({ plant }) => {
   const { favorites, setFavorites, consent } = usePlantsContext();
@@ -24,11 +22,11 @@ const SinglePlant = ({ plant }) => {
     <li className={style.cardsLi}>
       {" "}
       <Link to={`/plant/${plant.id}`} className={style.card}>
-        <FontAwesomeIcon
-          icon={favorites.includes(plant) ? faSolidHeart : faRegularHeart}
-          className={style.heart}
-          onClick={toggleFavorites}
-        />
+        {favorites.includes(plant) ? (
+          <SolidHeart onClick={toggleFavorites} />
+        ) : (
+          <RegularHeart onClick={toggleFavorites} />
+        )}
         <p className={style.favInstruction}>
           {favorites.includes(plant)
             ? "Remove from favorites"
@@ -37,8 +35,7 @@ const SinglePlant = ({ plant }) => {
 
         {plant.locations && (
           <div className={style.location}>
-            <FontAwesomeIcon icon={faLocationDot} />
-
+            <LocationDot />
             {" " + plant.locations[0]}
 
             {plant.locations.length > 1 && " and "}
