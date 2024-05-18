@@ -1,15 +1,10 @@
 # LeafLovers
 
-<!-- Welcome to LeafLovers! LeafLovers helps you discover the perfect plant match for your lifestyle and preferences. Beyond just matching, it offers a plant exchange platform where you can find and adopt plants from users all over Europe. This web app was crafted by two web development students using React, over a span of seven working days.
+Welcome to LeafLovers! LeafLovers helps you discover the perfect plant match for your lifestyle and preferences. Beyond just matching, it offers a plant exchange platform where you can find and adopt plants from users all over Europe. This web app was crafted by two web development students using React, over a span of seven working days.
 
-![LeafLovers Logo](/src/assets/logo_klein_farbig.svg) -->
+![LeafLovers Logo](/src/assets/logo_klein_farbig.svg)
 
-<div style="display: flex; align-items: center;">
-    <img src="/src/assets/logo_klein_farbig.svg" alt="LeafLovers Logo" style="margin-right: 20px;">
-    <p>Welcome to LeafLovers! LeafLovers helps you discover the perfect plant match for your lifestyle and preferences. Beyond just matching, it offers a plant exchange platform where you can find and adopt plants from users all over Europe. This web app was crafted by two web development students using React, over a span of seven working days.</p>
-</div>
-
-LeafLovers is live and ready for you to explore at: [https://leaflovers.example.com](https://leaflovers.onrender.com)
+LeafLovers is live and ready for you to explore at: [https://leaflovers.onrender.com](https://leaflovers.onrender.com)
 
 ## Features
 
@@ -29,15 +24,15 @@ LeafLovers is live and ready for you to explore at: [https://leaflovers.example.
 ## Technical Details
 
 - **Frontend**: Built with [React](https://reactjs.org/) and [Vite](https://vitejs.dev/).
-- **Libraries**: Utilizes [React Router](https://github.com/ReactTraining/react-router) and [js-cookie](https://github.com/js-cookie/js-cookie).
+- **Libraries**: Utilizes [React Router](https://reactrouter.com/) and [js-cookie](https://github.com/js-cookie/js-cookie).
 - **Styling**: Styled using native CSS with [CSS Modules](https://github.com/css-modules/css-modules).
 - **Data Generation**: All plant names and properties are fictional, generated with [Mockaroo](https://www.mockaroo.com/).
 - **Image Sourcing**: Plant photos are sourced from the [Pixabay API](https://pixabay.com/api/docs/).
 
 ## Screenshots
 
-<img src="./src/assets/screenshots/leaflovers_screenshot1.png" alt="App Screenshot of quiz" width="400">
-<img src="./src/assets/screenshots/leaflovers_screeshot2.png" alt="App Screenshot of plant information" width="400">
+<img src="./src/assets/screenshots/leaflovers_screenshot1.png" alt="App Screenshot of quiz" width="48%">
+<img src="./src/assets/screenshots/leaflovers_screeshot2.png" alt="App Screenshot of plant information" width="48%">
 
 ## Contributors
 
