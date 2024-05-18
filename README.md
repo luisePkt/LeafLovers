@@ -1,10 +1,12 @@
 # LeafLovers
 
-Welcome to LeafLovers! LeafLovers helps you discover the perfect plant match for your lifestyle and preferences. Beyond just matching, it offers a plant exchange platform where you can find and adopt plants from users all over Europe. This web app was crafted by two web development students using React, over a span of seven working days.
+Welcome to LeafLovers!
 
-![LeafLovers Logo](/src/assets/logo_klein_farbig.svg)
+LeafLovers helps you discover the perfect plant match for your lifestyle and preferences. Beyond just matching, it offers a plant exchange platform where you can find and adopt plants from users all over Europe. This web app was crafted by two web development students using React, over a span of seven working days.
 
 LeafLovers is live and ready for you to explore at: [https://leaflovers.onrender.com](https://leaflovers.onrender.com)
+
+![LeafLovers Logo](/src/assets/logo_klein_farbig.svg)
 
 ## Features
 
@@ -31,8 +33,8 @@ LeafLovers is live and ready for you to explore at: [https://leaflovers.onrender
 
 ## Screenshots
 
-<img src="./src/assets/screenshots/leaflovers_screenshot1.png" alt="App Screenshot of quiz" width="48%">
-<img src="./src/assets/screenshots/leaflovers_screeshot2.png" alt="App Screenshot of plant information" width="48%">
+<img src="./src/assets/screenshots/leaflovers_screenshot1.png" alt="App Screenshot of quiz" width="400">
+<img src="./src/assets/screenshots/leaflovers_screeshot2.png" alt="App Screenshot of plant information" width="400">
 
 ## Contributors
 
