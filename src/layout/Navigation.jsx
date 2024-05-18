@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import style from "../styles/navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/logo_klein_farbig.svg";
+import Logo from "../assets/icons/logo_klein_farbig.svg";
 import { useRef } from "react";
 import FavoritesPage from "../pages/FavoritesPage";
 import LegalNotice from "../pages/LegalNotice";
@@ -70,7 +70,8 @@ const Navigation = () => {
       {/* logo */}
       <div className={style.logoBox}>
         <Link to="/">
-          <img src={logo} alt="Logo LeafLovers" className={style.logoIcon}  />
+          {/* <img src={logo} alt="Logo LeafLovers" className={style.logoIcon}  /> */}
+          <Logo className={style.logoIcon} />
         </Link>
       </div>
 

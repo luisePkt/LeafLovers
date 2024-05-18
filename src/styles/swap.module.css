@@ -102,6 +102,8 @@ li.cardsLi {
   font-size: 0.8rem;
 }
 
+/* icons */
+
 .location {
   color: rgb(71, 71, 71);
   font-size: 0.8rem;
@@ -134,7 +136,7 @@ li.cardsLi {
 }
 
 .heart:hover {
-  color: var(--bgSecondary);
+  fill: var(--bgSecondary);
 }
 
 .heart:hover ~ .favInstruction {

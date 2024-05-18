@@ -3,18 +3,16 @@ import style from "../styles/result.module.css";
 import { useNavigate } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
 // icons:
-import Droplet from "./icons/Droplet";
-import { Sun } from "./icons/Sun";
-import Cloud from "./icons/Cloud";
-import CloudSun from "./icons/CloudSun";
-import SkullCrossbones from "./icons/SkullCrossbones";
-import Utensils from "./icons/Utensils";
+import DropletSolid from "../assets/icons/droplet-solid.svg";
+import Cloud from "../assets/icons/cloud-solid.svg";
+import Sun from "../assets/icons/sun-solid.svg";
+import CloudSun from "../assets/icons/cloud-sun-solid .svg";
+import SkullCrossbones from "../assets/icons/skull-crossbones-solid.svg";
+import Utensils from "../assets/icons/utensils-solid.svg";
 
 const ResultPageCard = ({ plant }) => {
   const { setNavigateBack, consent } = usePlantsContext();
   const navigate = useNavigate();
-
-  
 
   // go to SinglePlantCard
   const goToPlant = () => {
@@ -55,23 +53,42 @@ const ResultPageCard = ({ plant }) => {
         <h5>This plant needs:</h5>
 
         <p>
-          Watering: <Droplet /> {plant.watering === "Average" && <Droplet />}{" "}
-          {plant.watering === "Frequent" && <Droplet />}{" "}
-          {plant.watering === "Frequent" && <Droplet />}
+          Watering: <DropletSolid className={style.droplet} />{" "}
+          {plant.watering === "Average" && (
+            <DropletSolid className={style.droplet} />
+          )}{" "}
+          {plant.watering === "Frequent" && (
+            <DropletSolid className={style.droplet} />
+          )}{" "}
+          {plant.watering === "Frequent" && (
+            <DropletSolid className={style.droplet} />
+          )}
         </p>
         <p>
-          Sunlight: {plant.sunlight.includes("full shade") && <Cloud />}{" "}
-          {plant.sunlight.includes("deep shade") && <Cloud />}{" "}
-          {plant.sunlight.includes("full sun") && <Sun />}{" "}
-          {plant.sunlight.join("").includes("part") && <CloudSun />}
+          Sunlight:{" "}
+          {plant.sunlight.includes("full shade") && (
+            <Cloud className={style.cloud} />
+          )}{" "}
+          {plant.sunlight.includes("deep shade") && (
+            <Cloud className={style.cloud} />
+          )}{" "}
+          {plant.sunlight.includes("full sun") && <Sun className={style.sun} />}{" "}
+          {plant.sunlight.join("").includes("part") && (
+            <CloudSun className={style.cloudSun} />
+          )}
         </p>
         <p>
           Poisonous:{" "}
-          {plant.poisonous.toString().includes(true) && <SkullCrossbones />}
+          {plant.poisonous.toString().includes(true) && (
+            <SkullCrossbones className={style.skull} />
+          )}
           {plant.poisonous.toString().includes(false) && "not"}
         </p>
         <p>
-          Edible: {plant.poisonous.toString().includes(true) && <Utensils />}
+          Edible:{" "}
+          {plant.poisonous.toString().includes(true) && (
+            <Utensils className={style.utensils} />
+          )}
           {plant.poisonous.toString().includes(false) && "not"}
         </p>
       </div>

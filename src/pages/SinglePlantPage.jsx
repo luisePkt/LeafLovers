@@ -5,20 +5,20 @@ import style from "../styles/singlePlant.module.css";
 import ErrorPage from "./ErrorPage";
 import Contact from "../components/Contact";
 import AnimatedLeft from "../components/AnimatedLeft";
-// icons:
-import CircleArrowLeft from "../components/icons/CircleArrowLeft";
-import CircleArrowLeftDisabled from "../components/icons/CircleArrowLeftDisabled";
-import SolidHeart from "../components/icons/SolidHeart";
-import RegularHeart from "../components/icons/RegularHeart";
-import CircleArrowRightDisabled from "../components/icons/CircleArrowRightDisabled";
-import CircleArrowRight from "../components/icons/CircleArrowRight";
-import LocationDot from "../components/icons/LocationDot";
-import Droplet from "../components/icons/Droplet";
-import Cloud from "../components/icons/Cloud";
-import { Sun } from "../components/icons/Sun";
-import CloudSun from "../components/icons/CloudSun";
-import SkullCrossbones from "../components/icons/SkullCrossbones";
-import Utensils from "../components/icons/Utensils";
+// icons
+import CircleArrowLeft from "../assets/icons/circle-arrow-left-solid.svg";
+import CircleArrowLeftDisabled from "../assets/icons/circle-arrow-left-solid_disabled.svg";
+import SolidHeart from "../assets/icons/heart-solid.svg";
+import RegularHeart from "../assets/icons/heart-regular.svg";
+import DropletSolid from "../assets/icons/droplet-solid.svg";
+import Cloud from "../assets/icons/cloud-solid.svg";
+import Sun from "../assets/icons/sun-solid.svg";
+import CloudSun from "../assets/icons/cloud-sun-solid .svg";
+import SkullCrossbones from "../assets/icons/skull-crossbones-solid.svg";
+import Utensils from "../assets/icons/utensils-solid.svg";
+import LocationDot from "../assets/icons/location-dot-solid.svg";
+import CircleArrowRight from "../assets/icons/circle-arrow-right-solid.svg";
+import CircleArrowRightDisabled from "../assets/icons/circle-arrow-right-solid_disabled.svg";
 
 const SinglePlantPage = () => {
   const navigate = useNavigate();
@@ -36,8 +36,6 @@ const SinglePlantPage = () => {
     navigateBack,
     consent,
   } = usePlantsContext();
-
-  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -105,15 +103,18 @@ const SinglePlantPage = () => {
 
           <div className={style.middleSec}>
             {currentIndex === 0 ? (
-              <CircleArrowLeftDisabled />
+              <CircleArrowLeftDisabled className={style.switchDisabled} />
             ) : (
-              <CircleArrowLeft onClick={goToPrev} />
+              <CircleArrowLeft onClick={goToPrev} className={style.switch} />
             )}
             <div className={style.card}>
               {favorites.includes(currentPlant) ? (
-                <SolidHeart onClick={toggleFavorites} />
+                <SolidHeart className={style.heart} onClick={toggleFavorites} />
               ) : (
-                <RegularHeart onClick={toggleFavorites} />
+                <RegularHeart
+                  className={style.heart}
+                  onClick={toggleFavorites}
+                />
               )}
               <p className={style.favInstruction}>
                 {favorites.includes(currentPlant)
@@ -131,31 +132,43 @@ const SinglePlantPage = () => {
                 <div className={style.infos}>
                   <h5>Care-taking details: </h5>
                   <p>
-                    Watering: <Droplet />{" "}
-                    {currentPlant.watering === "Average" && <Droplet />}{" "}
-                    {currentPlant.watering === "Frequent" && <Droplet />}{" "}
-                    {currentPlant.watering === "Frequent" && <Droplet />}
+                    Watering: <DropletSolid className={style.droplet} />{" "}
+                    {currentPlant.watering === "Average" && (
+                      <DropletSolid className={style.droplet} />
+                    )}{" "}
+                    {currentPlant.watering === "Frequent" && (
+                      <DropletSolid className={style.droplet} />
+                    )}{" "}
+                    {currentPlant.watering === "Frequent" && (
+                      <DropletSolid className={style.droplet} />
+                    )}
                   </p>
                   <p>
                     Sunlight:{" "}
-                    {currentPlant.sunlight.includes("full shade") && <Cloud />}{" "}
-                    {currentPlant.sunlight.includes("deep shade") && <Cloud />}{" "}
-                    {currentPlant.sunlight.includes("full sun") && <Sun />}{" "}
+                    {currentPlant.sunlight.includes("full shade") && (
+                      <Cloud className={style.cloud} />
+                    )}{" "}
+                    {currentPlant.sunlight.includes("deep shade") && (
+                      <Cloud className={style.cloud} />
+                    )}{" "}
+                    {currentPlant.sunlight.includes("full sun") && (
+                      <Sun className={style.sun} />
+                    )}{" "}
                     {currentPlant.sunlight.join("").includes("part") && (
-                      <CloudSun />
+                      <CloudSun className={style.cloudSun} />
                     )}
                   </p>
                   <p>
                     Poisonous:{" "}
                     {currentPlant.poisonous.toString().includes(true) && (
-                      <SkullCrossbones />
+                      <SkullCrossbones className={style.skull} />
                     )}
                     {currentPlant.poisonous.toString().includes(false) && "no"}
                   </p>
                   <p>
                     Edible:{" "}
                     {currentPlant.poisonous.toString().includes(true) && (
-                      <Utensils />
+                      <Utensils className={style.utensils} />
                     )}
                     {currentPlant.poisonous.toString().includes(false) && "no"}
                   </p>
@@ -167,7 +180,8 @@ const SinglePlantPage = () => {
                   <p className={style.location}></p>
                   {currentPlant.locations.map((x, index) => (
                     <p key={index}>
-                      <LocationDot /> {currentPlant.locations[index]}:{" "}
+                      <LocationDot className={style.locationDot} />{" "}
+                      {currentPlant.locations[index]}:{" "}
                       <em> {currentPlant.firstNames[index]}</em>
                     </p>
                   ))}
@@ -196,9 +210,9 @@ const SinglePlantPage = () => {
             </div>
 
             {currentIndex === plants.length - 1 ? (
-              <CircleArrowRightDisabled />
+              <CircleArrowRightDisabled className={style.switchDisabled} />
             ) : (
-              <CircleArrowRight onClick={goToNext} />
+              <CircleArrowRight className={style.switch} onClick={goToNext} />
             )}
           </div>
 
