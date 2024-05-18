@@ -2,9 +2,9 @@ import style from "../styles/swap.module.css";
 import { Link } from "react-router-dom";
 import { usePlantsContext } from "../utils/PlantsProvider";
 // icons:
-import LocationDot from "../components/icons/LocationDotSinglePlantCard";
-import SolidHeart from "../components/icons/SolidHeartSinglePlantCard";
-import RegularHeart from "../components/icons/RegularHeartSinglePlantCard";
+import SolidHeart from "../assets/icons/heart-solid.svg";
+import RegularHeart from "../assets/icons/heart-regular.svg";
+import LocationDot from "../assets/icons/location-dot-solid.svg";
 
 const SinglePlant = ({ plant }) => {
   const { favorites, setFavorites, consent } = usePlantsContext();
@@ -23,9 +23,9 @@ const SinglePlant = ({ plant }) => {
       {" "}
       <Link to={`/plant/${plant.id}`} className={style.card}>
         {favorites.includes(plant) ? (
-          <SolidHeart onClick={toggleFavorites} />
+          <SolidHeart className={style.heart} onClick={toggleFavorites} />
         ) : (
-          <RegularHeart onClick={toggleFavorites} />
+          <RegularHeart className={style.heart} onClick={toggleFavorites} />
         )}
         <p className={style.favInstruction}>
           {favorites.includes(plant)
@@ -35,7 +35,7 @@ const SinglePlant = ({ plant }) => {
 
         {plant.locations && (
           <div className={style.location}>
-            <LocationDot />
+            <LocationDot className={style.locationDot} />
             {" " + plant.locations[0]}
 
             {plant.locations.length > 1 && " and "}
@@ -72,9 +72,7 @@ const SinglePlant = ({ plant }) => {
             <p className={style.imageSource}>Source: pixabay</p>
           </div>
         ) : !consent ? (
-          <div className={style.imgReplacement}>
-            Image requires cookies
-          </div>
+          <div className={style.imgReplacement}>Image requires cookies</div>
         ) : (
           <div className={style.imgReplacement}>No image available</div>
         )}

@@ -95,25 +95,13 @@ p.imageSource a {
   color: rgb(71, 71, 71);
 }
 
-/* .heart {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: rgb(71, 71, 71);
-  width: 24px;
-} */
+.infos {
+  margin: 1.5em 0;
+}
 
-/* .heart:hover {
-  color: var(--bgSecondary);
-} */
+/* icons */
 
-/* .heart:hover ~ .favInstruction {
-  display: block;
-} */
-
-.svg {
+.heart {
   position: absolute;
   right: 1em;
   top: 1em;
@@ -123,12 +111,54 @@ p.imageSource a {
   width: 24px;
 }
 
-.svg:hover {
-  color: var(--bgSecondary);
+.heart:hover {
+  fill: var(--bgSecondary);
 }
 
-.svg:hover ~ .favInstruction {
+.heart:hover ~ .favInstruction {
   display: block;
+}
+
+.droplet {
+  width: 12px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.cloud {
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.cloudSun {
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.sun {
+  width: 16px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.skull {
+  width: 14px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.utensils {
+  width: 14px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
 }
 
 .locationDot {
@@ -146,10 +176,6 @@ p.imageSource a {
   display: none;
   text-align: center;
   font-size: 0.8em;
-}
-
-.infos {
-  margin: 1.5em 0;
 }
 
 .switch {
